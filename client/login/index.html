@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="login-wrap">
+        <div class="left-wrap">
+            <h2>Đăng nhập</h2>
+            <p>Đăng nhập để theo dõi đơn hàng, lưu <br>danh sách sản phẩm yêu thích, nhận<br> nhiều ưu đãi hấp dẫn.</p>
+            <img src="https://pipe.tikicdn.com/media/upload/2018/10/12/2a3acb91a35d45e1b4b7c96912a0c84a.png">
+        </div>
+        <div class="right-wrap">
+            <div class="tab">
+                <a class="tab-item">
+                     Đăng nhập
+                </a>
+                <a class="tab-item" id="create-account" href="#" data-dismiss="modal" data-toggle="modal" data-target="#register-form">
+                     Tạo tài khoản
+                </a>
+            </div>
+            <form class="content bv-form" method="POST" action="" id="login_popup_form" novalidate="novalidate">
+                <button type="submit" class="bv-hidden-submit" style="display: none; width: 0px; height: 0px;"></button>
+                <div class="form-group popup_email has-feedback" id="popup_login">
+                    <label class="control-label">Email / SĐT</label>
+                    <input id="popup-login-email" type="text" class="form-control login" name="email" placeholder="Nhập Email hoặc Số điện thoại" data-bv-field="email"><i class="form-control-feedback" data-bv-icon-for="email" style="display: none;"></i>
+                    <span class="help-block ajax-message"></span>
+                    <small class="help-block" data-bv-validator="notEmpty" data-bv-for="email" data-bv-result="NOT_VALIDATED" style="display: none;">Vui lòng nhập Email hoặc Số điện thoại</small><small class="help-block" data-bv-validator="regexp" data-bv-for="email"
+                        data-bv-result="NOT_VALIDATED" style="display: none;">Email hoặc Số điện thoại không hợp lệ</small></div>
+                <div class="form-group popup_password has-feedback" id="popup_password">
+                    <label class="control-label">Mật khẩu</label>
+                    <input type="password" id="login_password" class="form-control login" name="password" placeholder="Mật khẩu từ 6 đến 32 ký tự" autocomplete="off" data-bv-field="password"><i class="form-control-feedback" data-bv-icon-for="password"
+                        style="display: none;"></i>
+                    <span class="help-block ajax-message"></span>
+                    <small class="help-block" data-bv-validator="stringLength" data-bv-for="password" data-bv-result="NOT_VALIDATED" style="display: none;">Mật khẩu phải dài từ 6 đến 32 ký tự</small></div>
+                <div class="login-ajax-captcha" style="display:none">
+                    <div id="login-popup-recaptcha"></div>
+                </div>
+                <div class="form-group" id="error_captcha" style="margin-bottom: 15px">
+                    <span class="help-block ajax-message"></span>
+                </div>
+                <div class="form-group">
+                    <p class="reset"> <a data-toggle="modal" data-target="#reset-password-form" href="#">Quên mật khẩu? Nhấn vào đây</a></p>
+                </div>
+                <div class="form-group">
+                    <button type="submit" id="login_popup_submit" class="btn btn-info btn-block">Đăng nhập</button>
+                </div>
+                <div class="form-group">
+                    <a class="btn btn-block btn-social btn-facebook user-name-loginfb" title="Đăng nhập bằng Facebook" href="javascript: void(0)" data-url="https://tiki.vn/customer/account/loginFacebook?ref=https%3A%2F%2Ftiki.vn%2Fsearch%3Fq%3Dyyy">
+                        <i class="fa fa-facebook"></i>
+                        <span>Đăng nhập bằng Facebook</span>
+                    </a>
+                </div>
+                <div class="form-group">
+                    <a class="btn btn-block btn-social btn-google user-name-login-google" title="Đăng nhập bằng Google" href="javascript: void(0)" data-url="https://tiki.vn/customer/account/login_google?ref=https%3A%2F%2Ftiki.vn%2Fsearch%3Fq%3Dyyy">
+                        <i class="ico ico-google"></i>
+                        <span>Đăng nhập bằng Google</span>
+                    </a>
+                </div>
+                <div class="form-group last">
+                    <a class="btn btn-block btn-social btn-zalo user-name-login-zalo" title="Đăng nhập bằng Zalo" href="javascript: void(0)" data-url="https://tiki.vn/customer/account/loginZalo?ref=https%3A%2F%2Ftiki.vn%2Fsearch%3Fq%3Dyyy">
+                        <span class="icon-wrap">
+                            <span class="tikicon icon-zalo"></span>
+                        </span>
+                        <span>Đăng nhập bằng Zalo</span>
+                    </a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
