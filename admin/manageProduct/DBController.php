@@ -27,7 +27,12 @@ class DBController
         return false;
 
     }
-
+    public function real_escape_string($string){
+        return $this->con->real_escape_string($string);
+    }
+    public function error(){
+        return $this->con->error;
+    }
     public function __destruct()
     {
         $this->closeConnection();

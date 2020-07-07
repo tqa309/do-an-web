@@ -7,7 +7,7 @@ $(document).ready(function() {
         columnDefs: [
             { width: "8%", targets: 0 },
             { width: "4%", targets: 1 },
-            { width: "8%", targets: 2 },
+            { width: "8%", targets: 4 },
             { width: "8%", targets: 3 },
             { width: "8%", targets: 4 },
 

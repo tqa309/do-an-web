@@ -7,7 +7,7 @@ $sql="DELETE from product where item_id='$idProduct'";
 if($conn->query($sql)==true){
 $error[]=array(
 		"error"=>false,
-		"message"=>"Xóa sản phẩm thành công"
+		"message"=>"Xóa sản phẩm có mã $idProduct thành công"
 	);
 }else{
 	$error[]=array(

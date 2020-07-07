@@ -1,26 +1,17 @@
 <?php require 'functions.php';
 
-$name=$_POST['name'];
-$brand=$_POST['brand'];
-$price=$_POST['price'];
-$decription=isset($_POST['decription']) ?  $_POST['decription'] : "";
-$image_name=$_FILES['file']['name'];
+$name=isset($_POST['name']) ? $conn->real_escape_string($_POST['name']) : "";
+$brand=isset($_POST['brand']) ? $conn->real_escape_string($_POST['brand']) : "";
+$price=isset($_POST['price']) ? $conn->real_escape_string($_POST['price']) : "";
+$decription=isset($_POST['decription']) ? $conn->real_escape_string($_POST['decription']) : "";
 $image=$_FILES['file']['tmp_name'];
 $error=[];
-function checkExistProduct($name,$product_shuffle){
-	foreach ($product_shuffle as $item) {
-	if($name==$item['item_name']) {	
-			
-		return false;
-	}
-	}
-	return true;
-}
-$upload_directory ="../../assets/products/".$image_name;
+$newImageName = uniqid('uploaded_', true) 
+    . '.' . strtolower(pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION));
+$upload_directory ="../../assets/products/".$newImageName;
 move_uploaded_file($image, $upload_directory);
-if(checkExistProduct($name,$product_shuffle)==true){
-	$sql ="INSERT into product(item_brand,item_name,item_price,item_decription,item_image) values('$brand','$name','$price','$decription','$upload_directory')";
-	$conn->query($sql);
+	$sql ="INSERT into product(item_brand,item_name,item_price,item_decription,item_image,item_register) values('$brand','$name','$price','$decription','$upload_directory','".date('Y-m-d h:i:s')."')";
+		if($conn->query($sql)==true){
 $error[]=array(
 		"error"=>false,
 		"message"=>"Thêm sản phẩm thành công"
@@ -28,7 +19,7 @@ $error[]=array(
 }else{
 	$error[]=array(
 		"error"=>true,
-		"message"=>"Sản phẩm đã tồn tại"
+		"message"=>"Thêm sản phẩm thất bại: ".$conn->error()
 	);
 }
 echo json_encode($error);

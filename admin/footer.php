@@ -27,6 +27,7 @@
     <!-- Page level plugins -->
     <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
   <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
+  <script src="../vendor/vanillatoasts/vanillatoasts.js"></script>
     <!-- Page level custom scripts -->
     <script type="text/javascript" src="./managerProduct.js"></script>
     <script type="text/javascript" src="./datatables-Product.js"></script>
