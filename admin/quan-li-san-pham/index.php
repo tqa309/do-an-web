@@ -112,4 +112,4 @@ include "$path/common/header.php" ?>
 
 
 
-<?php include "$path/common/footer.php" ?>
+<?php  include "$path/common/footer.php" ?>
