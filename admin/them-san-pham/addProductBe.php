@@ -1,4 +1,5 @@
-<?php require 'functions.php';
+<?php $path= $_SERVER['DOCUMENT_ROOT']."/do-an-web/admin";
+require "$path/common/functions.php";;
 
 $name=isset($_POST['name']) ? $conn->real_escape_string($_POST['name']) : "";
 $brand=isset($_POST['brand']) ? $conn->real_escape_string($_POST['brand']) : "";
@@ -9,8 +10,9 @@ $error=[];
 $newImageName = uniqid('uploaded_', true) 
     . '.' . strtolower(pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION));
 $upload_directory ="../../assets/products/".$newImageName;
+$acces="assets/products/".$newImageName;
 move_uploaded_file($image, $upload_directory);
-	$sql ="INSERT into product(item_brand,item_name,item_price,item_decription,item_image,item_register) values('$brand','$name','$price','$decription','$upload_directory','".date('Y-m-d h:i:s')."')";
+	$sql ="INSERT into product(item_brand,item_name,item_price,item_decription,item_image,item_register) values('$brand','$name','$price','$decription','$acces','".date('Y-m-d h:i:s')."')";
 		if($conn->query($sql)==true){
 $error[]=array(
 		"error"=>false,

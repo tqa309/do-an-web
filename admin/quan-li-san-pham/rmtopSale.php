@@ -1,5 +1,5 @@
-<?php require './functions.php';
-
+<?php $path= $_SERVER['DOCUMENT_ROOT']."/do-an-web/admin";
+require "$path/common/functions.php";
 $idProduct = $conn->real_escape_string($_POST['idProduct']);
 $error = [];
 

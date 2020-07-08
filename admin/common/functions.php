@@ -1,10 +1,11 @@
 <?php
 
 // require MySQL Connection
-require ('./DBController.php');
+$path = $_SERVER['DOCUMENT_ROOT']."/do-an-web/admin";
+require "$path/database/DBController.php";
 
 // require Product Class
-require ('./Product.php');
+require "$path/database/Product.php";
 
 
 

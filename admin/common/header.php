@@ -11,14 +11,14 @@
     <title>SB Admin 2 - Tables</title>
 
     <!-- Custom fonts for this template -->
-    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
+    <link href="http://localhost/do-an-web/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
     <!-- plugin vanillatoasts -->
-    <link rel="stylesheet" href="../vendor/vanillatoasts/vanillatoasts.css">
+    <link rel="stylesheet" href="http://localhost/do-an-web/admin/vendor/vanillatoasts/vanillatoasts.css">
     <!-- Custom styles for this template -->
-    <link href="../css/sb-admin-2.min.css" rel="stylesheet" />
+    <link href="http://localhost/do-an-web/admin/css/sb-admin-2.min.css" rel="stylesheet" />
     <!-- Custom styles for this page -->
-    <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link href="http://localhost/do-an-web/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" />
 
 </head>
 
@@ -53,7 +53,7 @@
 
             <!-- Nav Item - ManageProduct-->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="./manageProduct.php">
+                <a class="nav-link collapsed" href="http://localhost/do-an-web/admin/quan-li-san-pham/">
                     <i class="fas fa-fw fa-tasks"></i>
                     <span>Quản lý sản phẩm</span>
                 </a>
@@ -61,7 +61,7 @@
 
             <!-- Nav Item - Pages AddProduct -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="addProduct.php">
+                <a class="nav-link collapsed" href="http://localhost/do-an-web/admin/them-san-pham/">
                     <i class="fas fa-fw fa-plus"></i>
                     <span>Thêm sản phẩm mới</span>
                 </a>

@@ -1,5 +1,7 @@
-<?php require './functions.php';
-include '../header.php' ?>
+<?php
+$path = $_SERVER['DOCUMENT_ROOT'] . "/do-an-web/admin";
+require "$path/common/functions.php";
+include "$path/common/header.php" ?>
 
 <div class="container-fluid">
     <!-- DataTales Example -->
@@ -35,14 +37,12 @@ include '../header.php' ?>
                                 </td>
 
                                 <th class="pt-4"><?php echo $item['item_id']; ?></th>
-                                <td class="pt-4"> <input class="form-check-input top-sale" type="checkbox" value="T1"
-                                 <?php foreach ($type_detail as $value) {
+                                <td class="pt-4"> <input class="form-check-input top-sale" type="checkbox" value="T1" <?php foreach ($type_detail as $value) {
                                                                                                                             if (in_array($item['item_id'], $value) and in_array("T1", $value)) {
                                                                                                                                 echo "checked";
                                                                                                                             }
                                                                                                                         } ?>></td>
-                                <td class="pt-4"> <input class="form-check-input special-price" type="checkbox" value="T2" 
-                                <?php foreach ($type_detail as $value) {
+                                <td class="pt-4"> <input class="form-check-input special-price" type="checkbox" value="T2" <?php foreach ($type_detail as $value) {
                                                                                                                                 if (in_array($item['item_id'], $value) and in_array("T2", $value)) {
                                                                                                                                     echo "checked";
                                                                                                                                 }
@@ -51,7 +51,7 @@ include '../header.php' ?>
                                 <td class="pt-4"> <?php echo $item['item_brand']; ?></td>
                                 <td class="pt-4"> <?php echo $item['item_price']; ?></td>
                                 <td class="pt-4"><?php echo $item['item_decription']; ?></td>
-                                <td class="pt-4"><img src="<?php echo $item['item_image']; ?>" class="" height="160px" width="130px">
+                                <td class="pt-4"><img src="<?php echo "../../".$item['item_image']; ?>" class="" height="160px" width="130px">
                                 </td>
                             </tr>
                         <?php
@@ -78,15 +78,15 @@ include '../header.php' ?>
                         </div>
                         <div class="form-group">
                             <label for="nameProduct">Tên sản phẩm</label>
-                            <input type="text" class="form-control" id="nameProduct" ">
+                            <input type="text" class="form-control" id="nameProduct" >
                                     </div>
                                     <div class=" form-group">
                             <label for="brandProduct">Nhãn hiệu</label>
-                            <input type="text" class="form-control" id="brandProduct" ">
+                            <input type="text" class="form-control" id="brandProduct" >
                                     </div>
                                     <div class=" form-group">
                             <label for="priceProduct">Giá bán</label>
-                            <input type="number" class="form-control" id="priceProduct" ">
+                            <input type="number" class="form-control" id="priceProduct" >
                                     </div>
                                     <div class=" form-group">
                             <label for="decriptionProduct">Mô tả</label>
@@ -112,4 +112,4 @@ include '../header.php' ?>
 
 
 
-<?php include '../footer.php' ?>
+<?php include "$path/common/footer.php" ?>
