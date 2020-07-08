@@ -11,11 +11,12 @@ const deleteProduct = async function (param) {
             idProduct: idProduct
         },
         success: async function (data) {
-            await notification(data[0].message);
+            await notification(data,1);
             $('.deleteProduct').fadeOut(700);
         }
+
     });
-    
+
 }
 
 $('.edit-product').click(async function () {
@@ -47,8 +48,8 @@ $('.top-sale').change(async function () {
                 idProduct: idProduct
             },
             dataType: "json",
-            success: function (response) {
-               notification(response[0].message);
+            success: async function (data) {
+                await notification(data);
             }
         });
     } else {
@@ -59,11 +60,9 @@ $('.top-sale').change(async function () {
                 idProduct: idProduct
             },
             dataType: "json",
-            success:async function (response) {
-               await notification(response[0].message);
-                setTimeout(function () { 
-                    location.reload()
-                 },1000)
+            success: async function (data) {
+                await notification(data,1);
+
             }
         });
     }
@@ -80,8 +79,8 @@ $('.special-price').change(async function () {
                 idProduct: idProduct
             },
             dataType: "json",
-            success: function (response) {
-                notification(response[0].message);
+            success: async function (data) {
+                await notification(data);
             }
         });
     } else {
@@ -92,8 +91,8 @@ $('.special-price').change(async function () {
                 idProduct: idProduct
             },
             dataType: "json",
-            success: function (response) {
-                notification(response[0].message);
+            success: async function (data) {
+                await notification(data,1);
             }
         });
     }
@@ -138,15 +137,15 @@ $('#updatebtn').click(async function () {
             data: form_data,
 
             success: async function (data) {
-               await notification(data[0].message);
-               product=$(`tr[data-id=${idProduct}]`)
-               product.children().eq(4).text(name);
-               product.children().eq(5).text(brand);
-               product.children().eq(6).text(price);
-               product.children().eq(7).text(decription);
+                await notification(data);
+                product = $(`tr[data-id=${idProduct}]`)
+                product.children().eq(4).text(name);
+                product.children().eq(5).text(brand);
+                product.children().eq(6).text(price);
+                product.children().eq(7).text(decription);
             }
         })
-       
+
 
     } else {
         let type = file.type;
@@ -183,14 +182,14 @@ $('#updatebtn').click(async function () {
             dataType: 'Json',
             data: form_data,
 
-            success: function (data) {
-                notification(data[0].message);
-                product=$(`tr[data-id=${idProduct}]`);
+            success: async function (data) {
+                await notification(data);
+                product = $(`tr[data-id=${idProduct}]`);
                 product.children().eq(4).text(name);
                 product.children().eq(5).text(brand);
                 product.children().eq(6).text(price);
                 product.children().eq(7).text(decription);
-                product.children().eq(8).children().attr("src",data[0].src);
+                product.children().eq(8).children().attr("src", data[0].src);
             }
         })
     }
@@ -219,13 +218,13 @@ $('#submit').click(async function () {
     let price = $('#priceProduct').val();
     let decription = $('#decriptionProduct').val();
     let file = $('#pictureProduct').prop('files')[0] ? $('#pictureProduct').prop('files')[0] : "";
-    let match = ["image/gif", "image/png", "image/jpg", "image/jpeg"];
+    let match = ["image/gif", "image/png", "image/jpg", "image/jpeg","image/webp"];
     if (await file === "") {
         alert("File ảnh sản phẩm rỗng")
         return;
     }
     let type = file.type;
-    if (type != match[0] && type != match[1] && type != match[2] && type != match[3]) {
+    if (type != match[0] && type != match[1] && type != match[2] && type != match[3]&& type != match[4]) {
         alert("File không phải định dạng ảnh");
         return;
     }
@@ -257,21 +256,56 @@ $('#submit').click(async function () {
         dataType: 'Json',
         data: form_data,
 
-        success:async function (data) {
-            await notification(data[0].message);
-            setTimeout(function () { location.reload(); },1000)
+        success: async function (data) {
+            await notification(data);
+            setTimeout(function () {
+                location.reload();
+            }, 1000)
         }
     })
 
 });
 
 // ? function show alert
-notification = function (message) {
+notificationSuccess = function (message) {
     VanillaToasts.create({
         title: 'Thông báo',
         text: message,
         type: 'info', // success, info, warning, error   / optional parameter
         // icon: '/img/alert-icon.jpg', // optional parameter
-        timeout: 5000 // hide after 5000ms, // optional parameter
+        timeout: 6000 // hide after 5000ms, // optional parameter
     });
+}
+notificationWarning = function (message) {
+    VanillaToasts.create({
+        title: 'Thông báo',
+        text: message,
+        type: 'warning', // success, info, warning, error   / optional parameter
+        // icon: '/img/alert-icon.jpg', // optional parameter
+        timeout: 6000 // hide after 5000ms, // optional parameter
+    });
+}
+notificationError = function (message) {
+    VanillaToasts.create({
+        title: 'Thông báo',
+        text: message,
+        type: 'error', // success, info, warning, error   / optional parameter
+        // icon: '/img/alert-icon.jpg', // optional parameter
+        timeout: 6000 // hide after 5000ms, // optional parameter
+    });
+}
+notification = async function (data, type=0) {
+    if (type == 0) {
+        if (data[0].error == false) {
+            await notificationSuccess(data[0].message);
+        } else {
+            await notificationError(data[0].message)
+        }
+    }else{
+        if (data[0].error == false) {
+            await notificationWarning(data[0].message);
+        } else {
+            await notificationError(data[0].message)
+        } 
+    }
 }

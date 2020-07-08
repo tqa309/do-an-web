@@ -16,13 +16,13 @@ $sql = "UPDATE product SET item_name='$name',item_brand='$brand',item_price='$pr
 if ($conn->query($sql) == true) {
 	$error[] = array(
 		"error" => false,
-		"message" => "Cập nhật sản phẩm thành công",
+		"message" => "Cập nhật sản phẩm có mã $idProduct thành công",
 		"src"=>$upload_directory
 	);
 } else {
 	$error[] = array(
 		"error" => true,
-		"message" => "Cập nhật Sản phẩm tất bại "
+		"message" => "Cập nhật Sản phẩm tất bại ".$conn->error()
 	);
 }
 echo json_encode($error);
