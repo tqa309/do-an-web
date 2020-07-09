@@ -15,3 +15,15 @@ $conn = new DBController();
 $product = new Product($conn);
 $product_shuffle = $product->getData();
 
+function sessionTimeOut($time) {
+	$login_session_duration = $time; 
+	$current_time = time(); 
+	if(isset($_SESSION['login_time'])){  
+		if(((time() - $_SESSION['login_time']) > $login_session_duration)){ 
+            unset( $_SESSION['user_id']);
+            unset( $_SESSION['username']);
+            unset( $_SESSION['user_type']);
+            unset( $_SESSION['login_time']);
+		} 
+	}
+}
