@@ -22,10 +22,9 @@ function render(response) {
             html += `<div class="col-lg-3 col-md-4 col-sm-6" >`;
             html += '<div class = "item py-2" style = "margin: auto; max-width: 250px;margin-bottom:20px;margin-top:0px; ">';
             html += '<div class = "product font-rale ">';
-            html += `<a href="../chi-tiet-san-pham/?id=${value.ID}"><img src="${value.img} " alt="${value.Name}" class="img-fluid " onMouseOver="this.style='transform:scale(1.15,1.15)'" onMouseOut="this.style='transform:scale(1,1)'"></a>`;
-            html += `<div class="text-center " > <h6 style="height:38.400px;margin-top: 15px;">${value.Name}</h6>`;
-            html += '<div class="rating text-warning font-size-12 "> <span><i class="fas fa-star "></i></span> <span><i class="fas fa-star "></i></span> <span><i class="fas fa-star "></i></span><span><i class="fas fa-star "></i></span><span><i class="far fa-star "></i></span>';
-            html += `</div><div class="price py-2 "><span>${value.Price}</span></div></div> </div> </div></div>`;
+            html += `<a href="../chi-tiet-san-pham/?id=${value.ID}"><img src="../${value.img} " alt="${value.Name}" class="img-fluid " onMouseOver="this.style='transform:scale(1.15,1.15)'" onMouseOut="this.style='transform:scale(1,1)'"></a>`;
+            html += `<div class="text-center " > <h6 style="margin-top: 25px;">${value.Name}</h6>`;
+            html += `<div class="price py-2 "><span style="font-size:20px;color:red;">${value.Price}</span></div></div> </div> </div></div>`;
         }
     }
     $('#ProductList').html(html);
