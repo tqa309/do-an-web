@@ -11,15 +11,14 @@
             }
 
             echo <<<EOF
-                <span class="px-3 border-right border-left"><i class="fa fa-user" aria-hidden="true"></i> $displayName | <a href="../dang-xuat" class="text-dark">Đăng xuất</a><span>
+                <span class="px-2 border-right border-right"><i class="fa fa-user" aria-hidden="true"></i> $displayName </span> <span class="px-2 border-right "> <a href="../admin" class="text-dark">Quản lý</a></span> <span class="px-2 border-right "> <a href="../dang-xuat" class="text-dark">Đăng xuất</a></span>
             EOF;
           }
           else {
-              echo '<a href="../dang-nhap" class="px-3 border-right border-left text-dark">Đăng nhập</a>';
+              echo '<a href="../dang-nhap" class="px-3 border-right border-left text-dark">Đăng nhập</a><a href="../dang-ky" class="px-3 border-right border-left text-dark">Đăng ký</a><span>';
           }
     }
-
-?>
+    ?>
 
 
 <html>

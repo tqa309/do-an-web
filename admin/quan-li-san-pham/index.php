@@ -11,7 +11,7 @@ include "$path/common/header.php" ?>
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered text-center" id="dataProduct" width="100%" cellspacing="0">
+                <table class="table table-bordered table-hover text-center table-responsive" id="dataProduct" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th>Thao tác</th>
@@ -50,8 +50,8 @@ include "$path/common/header.php" ?>
                                 <td class="pt-4"><?php echo $item['item_name'] ?></td>
                                 <td class="pt-4"> <?php echo $item['item_brand']; ?></td>
                                 <td class="pt-4"> <?php echo number_format($item['item_price']); ?></td>
-                                <td class="pt-4"><?php echo $item['item_decription']; ?></td>
-                                <td class="pt-4"><img src="<?php echo "../../".$item['item_image']; ?>" class="" height="160px" width="130px">
+                                <td class="pt-4 text-truncate""><?php echo $item['item_decription']; ?></td>
+                                <td class="pt-4"><img src="<?php echo "../../" . $item['item_image']; ?>" class="" height="160px" width="130px">
                                 </td>
                             </tr>
                         <?php
@@ -78,17 +78,17 @@ include "$path/common/header.php" ?>
                         </div>
                         <div class="form-group">
                             <label for="nameProduct">Tên sản phẩm</label>
-                            <input type="text" class="form-control" id="nameProduct" >
-                                    </div>
-                                    <div class=" form-group">
+                            <input type="text" class="form-control" id="nameProduct">
+                        </div>
+                        <div class=" form-group">
                             <label for="brandProduct">Nhãn hiệu</label>
-                            <input type="text" class="form-control" id="brandProduct" >
-                                    </div>
-                                    <div class=" form-group">
+                            <input type="text" class="form-control" id="brandProduct">
+                        </div>
+                        <div class=" form-group">
                             <label for="priceProduct">Giá bán</label>
-                            <input type="number" class="form-control" id="priceProduct" >
-                                    </div>
-                                    <div class=" form-group">
+                            <input type="number" class="form-control" id="priceProduct">
+                        </div>
+                        <div class=" form-group">
                             <label for="decriptionProduct">Mô tả</label>
                             <textarea class="form-control" id="decriptionProduct" rows="7"></textarea>
                         </div>
@@ -112,4 +112,4 @@ include "$path/common/header.php" ?>
 
 
 
-<?php  include "$path/common/footer.php" ?>
+<?php include "$path/common/footer.php" ?>

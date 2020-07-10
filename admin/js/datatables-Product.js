@@ -1,42 +1,20 @@
 // Call the dataTables jQuery plugin
-$(document).ready(function () {
+$(document).ready(function() {
     $('#dataProduct').removeAttr('width').DataTable({
-        scrollCollapse: true,
-        paging: true,
-        lengthMenu: [
-            [5, 10, 25, 50, 100, -1],
-            [5, 10, 25, 50, 100, "All"]
-        ],
-        columnDefs: [{
-                width: "8%",
-                targets: 0
-            },
-            {
-                width: "4%",
-                targets: 1
-            },
-            {
-                width: "8%",
-                targets: 4
-            },
-            {
-                width: "8%",
-                targets: 3
-            },
-            {
-                width: "8%",
-                targets: 4
-            },
-            {
-                width: "15%",
-                targets: 6
-            }
-
+            scrollCollapse: false,
+            paging: true,
+            lengthMenu: [
+                [5, 10, 25, 50, 100, -1],
+                [5, 10, 25, 50, 100, "All"]
+            ],
+            columnDefs: [
+                { width: "50%", targets: 0 }
+            ]
         ],
         scroller: {
             rowHeight: "100px"
         },
-        fixedColumns: true,
+        fixedColumns: false,
         language: {
             lengthMenu: "_MENU_ sản phẩm/trang",
             search: "Tìm kiếm",
