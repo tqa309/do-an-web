@@ -29,7 +29,7 @@
   <script src="<?php echo $server ?>/vendor/datatables/dataTables.bootstrap4.min.js"></script>
   <script src="<?php echo $server ?>/vendor/vanillatoasts/vanillatoasts.js"></script>
     <!-- Page level custom scripts -->
-
+    <script type="text/javascript" src="<?php echo $server ?>/js/demo/datatables-demo.js"></script>
     <script type="text/javascript" src="<?php echo $server ?>/js/quanlisanpham.js"></script>
     <script type="text/javascript" src="<?php echo $server ?>/js/datatables-Product.js"></script>
 </body>

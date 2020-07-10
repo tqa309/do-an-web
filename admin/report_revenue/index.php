@@ -28,8 +28,9 @@ include "$path/common/header.php" ?>
             </div>
             <button type="button" class="btn btn-primary" onclick="report()" >Xuất báo cáo</button>
           </form>
-          
-        <div id="notice_form" class="warning"></div>
+        <br>
+        <div id="notice_form" class="text-warning"></div>
+        <br>
         </div>
         <div class="card shadow mb-4">
             <div class="card-body">
@@ -55,7 +56,10 @@ include "$path/common/header.php" ?>
     var formData = $('#report').serialize();
     var begin=document.getElementById("start_day").value;
    var end=document.getElementById("end_day").value;
-   if (begin===undefined || end===undefined)
+   console.log(begin);
+   console.log(end);
+   document.getElementById("notice_form").innerHTML="";
+   if (begin==="" || end==="")
    {
     document.getElementById("notice_form").innerHTML="Nhập thiếu dữ liệu";
    }
