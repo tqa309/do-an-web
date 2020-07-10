@@ -9,12 +9,12 @@ $sql = "INSERT into item_type_detail (item_id,id_type) Values ('$idProduct','T2'
 if ($conn->query($sql) == true) {
     $error[] = array(
         "error" => false,
-        "message" => "Đã thêm sản phẩm có mã $idProduct  vào danh mục Special-Price"
+        "message" => "Đã thêm sản phẩm có mã $idProduct  vào danh mục Sản phẩm mới"
     );
 } else {
     $error[] = array(
         "error" => true,
-        "message" => "Không thể thêm sản phẩm vào danh mục Special-Price: Lỗi ".$conn->error()
+        "message" => "Không thể thêm sản phẩm vào danh mục Sản phẩm mới: Lỗi ".$conn->error()
     );
 }
 echo json_encode($error);

@@ -77,6 +77,9 @@ $('#register').click(async function () {
         dataType: "json",
         success: function (response) {
             notification(response)
+            setTimeout(() => {
+                window.location.replace("../login.php");
+            }, 1500);
         }
     });
 });

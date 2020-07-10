@@ -8,12 +8,12 @@ $sql = "DELETE from item_type_detail Where item_id='$idProduct' and id_type='T1'
 if ($conn->query($sql) == true) {
     $error[] = array(
         "error" => false,
-        "message" => "Đã xóa sản phẩm có mã $idProduct  khỏi danh mục TopSale "
+        "message" => "Đã xóa sản phẩm có mã $idProduct  khỏi danh mục Khuyến mãi hot "
     );
 } else {
     $error[] = array(
         "error" => true,
-        "message" => "Không thể xóa sản phẩm khỏi danh mục TopSale: Lỗi ".$conn->error()
+        "message" => "Không thể xóa sản phẩm khỏi danh mục Khuyến mãi hot: Lỗi ".$conn->error()
     );
 }
 echo json_encode($error);

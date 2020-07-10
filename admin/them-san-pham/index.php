@@ -25,7 +25,7 @@ include "$path/common/header.php"; ?>
                         </div>
                         <div class="form-group">
                                 <label for="exampleInputFile">Ảnh Sản phẩm</label>
-                                <input type="file" class="form-control-file mb-2 w-50" id="pictureProduct" aria-describedby="fileHelp" onchange="readURL(this);">
+                                <input type="file" class="form-control-file mb-2" id="pictureProduct" aria-describedby="fileHelp" onchange="readURL(this);">
                                 <img id="uploadimg" class=" img-fluid img-thumbnail" src="#" alt="your image" style="display: none" />
                         </div>
                         <button type="button" id="submit" class="btn btn-primary mt-2">Submit</button>

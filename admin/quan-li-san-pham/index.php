@@ -16,8 +16,8 @@ include "$path/common/header.php" ?>
                         <tr>
                             <th>Thao tác</th>
                             <th>ID</th>
-                            <th>Top Sale</th>
-                            <th>Special Price</th>
+                            <th>Khuyến Mãi Hot</th>
+                            <th>Sản phẩm mới</th>
                             <th>Tên Sản Phẩm</th>
                             <th>Hãng</th>
                             <th>Giá bán</th>
@@ -49,7 +49,7 @@ include "$path/common/header.php" ?>
                                                                                                                             } ?>></td>
                                 <td class="pt-4"><?php echo $item['item_name'] ?></td>
                                 <td class="pt-4"> <?php echo $item['item_brand']; ?></td>
-                                <td class="pt-4"> <?php echo $item['item_price']; ?></td>
+                                <td class="pt-4"> <?php echo number_format($item['item_price']); ?></td>
                                 <td class="pt-4"><?php echo $item['item_decription']; ?></td>
                                 <td class="pt-4"><img src="<?php echo "../../" . $item['item_image']; ?>" class="" height="160px" width="130px">
                                 </td>

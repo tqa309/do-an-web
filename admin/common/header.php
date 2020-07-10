@@ -1,16 +1,6 @@
 <?php $server = "http://" . $_SERVER['SERVER_NAME'] . "/do-an-web/admin";
 require "$path/common/functions.php";
-session_start();
-$user_type=isset($_SESSION['user_type']) ? $_SESSION['user_type'] : "";
-$username=$_SESSION['username'];
-$linkto = "http://" . $_SERVER['SERVER_NAME'];
-if ($user_type == ""||$user_type!=1) {
-    header("Location:$linkto/do-an-web/404.php");
-}
-
-sessionTimeOut(600);
-
-
+$username = $_SESSION['username'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,7 +43,7 @@ sessionTimeOut(600);
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Quảdn lý
+                Quản lý
             </div>
 
             <!-- Nav Item - ManageProduct-->
@@ -96,6 +86,12 @@ sessionTimeOut(600);
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block" />
+
+            <li class="nav-item">
+                <a class="nav-link" href="../../">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Trang chủ</span></a>
+            </li>
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
@@ -143,11 +139,12 @@ sessionTimeOut(600);
                                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Activity Log
                                 </a> -->
-                                <form action="<?php echo $server?>/common/logout.php" method="post">
-                                <button class="dropdown-item" type="submit"  name="logoutad" data-toggle="modal" data-target="#logoutModal">
+                                <form action="header.php" method="post">
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="../../dang-xuat">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
-                                </button>
+                                    Đăng xuất
+                                </a>
                             </div>
                             </form>
                         </li>
