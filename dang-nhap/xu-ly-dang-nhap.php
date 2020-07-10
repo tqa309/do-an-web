@@ -8,12 +8,14 @@
     
     $isLoggedIn = processLogin($username, $password);
     if (! $isLoggedIn) {
-        $_SESSION["errorMessage"] = "Invalid Credentials";
-    }
-    if (intval($_SESSION["userType"]) == 1) {
-      header("Location: ../admin");
+      $_SESSION["errorMessage"] = "Invalid Credentials";
+      header("Location: ./");
     } else {
-      header("Location: ../trang-chu");
+      if (intval($_SESSION["userType"]) == 1) {
+        header("Location: ../admin");
+      } else {
+        header("Location: ../trang-chu");
+      }
     }
     exit();
   }

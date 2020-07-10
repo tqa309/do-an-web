@@ -4,43 +4,43 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-3 col-12">
-                <h4 class="font-rubik font-size-20">Mobile Shopee</h4>
-                <p class="font-size-14 font-rale text-white-50">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus, deserunt.</p>
+                <h4 class="font-rubik font-size-20">Tý Mobile</h4>
+                <p class="font-size-14 font-rale text-white-50">Nơi mang đến cho bạn những chiếc điện thoại tốt nhất với những mức giá tuyệt vời và chế độ hậu mãi tốt.</p>
             </div>
             <div class="col-lg-4 col-12">
-                <h4 class="font-rubik font-size-20">Newslatter</h4>
+                <h4 class="font-rubik font-size-20">Nhận tin mới</h4>
                 <form class="form-row">
                     <div class="col">
                         <input type="text" class="form-control" placeholder="Email *">
                     </div>
                     <div class="col">
-                        <button type="submit" class="btn btn-primary mb-2">Subscribe</button>
+                        <button type="submit" class="btn btn-primary mb-2">Đăng ký</button>
                     </div>
                 </form>
             </div>
             <div class="col-lg-2 col-12">
-                <h4 class="font-rubik font-size-20">Information</h4>
+                <h4 class="font-rubik font-size-20">Thông tin thêm</h4>
                 <div class="d-flex flex-column flex-wrap">
-                    <a href="#" class="font-rale font-size-14 text-white-50 pb-1">About Us</a>
-                    <a href="#" class="font-rale font-size-14 text-white-50 pb-1">Delivery Information</a>
-                    <a href="#" class="font-rale font-size-14 text-white-50 pb-1">Privacy Policy</a>
-                    <a href="#" class="font-rale font-size-14 text-white-50 pb-1">Terms &amp; Conditions</a>
+                    <a href="#" class="font-rale font-size-14 text-white-50 pb-1">Về chúng tôi</a>
+                    <a href="#" class="font-rale font-size-14 text-white-50 pb-1">Thông tin vận chuyển</a>
+                    <a href="#" class="font-rale font-size-14 text-white-50 pb-1">Thông tin bảo mật</a>
+                    <a href="#" class="font-rale font-size-14 text-white-50 pb-1">Điều khoản &amp; điều kiện</a>
                 </div>
             </div>
             <div class="col-lg-2 col-12">
-                <h4 class="font-rubik font-size-20">Account</h4>
+                <h4 class="font-rubik font-size-20">Tài khoản</h4>
                 <div class="d-flex flex-column flex-wrap">
-                    <a href="#" class="font-rale font-size-14 text-white-50 pb-1">My Account</a>
-                    <a href="#" class="font-rale font-size-14 text-white-50 pb-1">Order History</a>
-                    <a href="#" class="font-rale font-size-14 text-white-50 pb-1">Wish List</a>
-                    <a href="#" class="font-rale font-size-14 text-white-50 pb-1">Newslatters</a>
+                    <a href="#" class="font-rale font-size-14 text-white-50 pb-1">Giỏ hàng của tôi</a>
+                    <a href="#" class="font-rale font-size-14 text-white-50 pb-1">Lịch sử mua hàng</a>
+                    <a href="#" class="font-rale font-size-14 text-white-50 pb-1">Danh sách yêu thích</a>
+                    <a href="#" class="font-rale font-size-14 text-white-50 pb-1">Khuyến mãi hot</a>
                 </div>
             </div>
         </div>
     </div>
 </footer>
 <div class="copyright text-center bg-dark text-white py-2">
-    <p class="font-rale font-size-14">© Copyrights 2020. Desing By <a href="#" class="color-second">Daily Tuition</a></p>
+    <p class="font-rale font-size-14">Copyrights 2020 © Tý Mobile</p>
 </div>
 <!-- !start #footer -->
 

@@ -1,4 +1,5 @@
-
+$(document).ready(function() {
+    
   let $qty_up = $(".qty .qty-up");
   let $qty_down = $(".qty .qty-down");
   let $deal_price = $("#deal-price");
@@ -49,3 +50,23 @@
 
           }});
   });
+
+  $(".owl-carousel").owlCarousel({
+    loop: false,
+    dots: false,
+    responsive : {
+        0: {
+            items: 1,
+            nav: false
+        },
+        600: {
+            items: 3,
+            nav: true
+        },
+        1000 : {
+            items: 5,
+            nav: true
+        }
+    }
+  });
+})

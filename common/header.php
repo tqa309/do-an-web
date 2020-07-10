@@ -5,7 +5,7 @@
             require_once 'session.php';
             $memberResult = getMemberById($_SESSION["userId"]);
             if(!empty($memberResult["last_name"])) {
-                $displayName = ucwords($memberResult["last_name"]);
+                $displayName = utf8_decode($memberResult["last_name"]);
             } else {
                 $displayName = $memberResult["username"];
             }
@@ -22,11 +22,11 @@
 ?>
 
 
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mobile Shopee</title>
+    <title>Tý Mobile - Nơi mua bán điện thoại uy tín TP.HCM</title>
 
     <!-- Bootstrap CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -38,6 +38,9 @@
     <!-- font awesome icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous">
 
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <!-- Custom CSS file -->
     <link rel="stylesheet" href="style.css">
 
@@ -48,16 +51,17 @@
 <header id="header">
     
     <div class="strip d-flex justify-content-between px-4 py-1 bg-light">
-        <p class="font-rale font-size-12 text-black-50 m-0">Khu phố 6 - Phường Linh Trung - Quận Thủ Đức - TPHCM. Tel: (028). 38.973.921</p>
+        <p class="font-rale font-size-12 text-black-50 m-0">
+        <span class="d-none d-md-block ">Khu phố 6 - Phường Linh Trung - Quận Thủ Đức - TPHCM. Tel: (028). 38.973.921</span>
+        </p>
         <div class="font-rale font-size-14">
             <?php Login();?>
-            <a href="#" class="px-3 border-right text-dark">Danh sách yêu thích (0)</a>
         </div>
     </div>
 
     <!-- Primary Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark color-second-bg">
-        <a class="navbar-brand" href="#">Tý Mobile</a>
+        <a class="navbar-brand" href="../trang-chu">Tý Mobile</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -82,8 +86,8 @@
                     <a class="nav-link" href="#">Khác</a>
                 </li>
             </ul>
-            <form action="#" class="font-size-14 font-rale">
-                <a href="cart.php" class="py-2 rounded-pill color-primary-bg">
+            <form action="../gio-hang" class="font-size-14 font-rale">
+                <a href="../gio-hang" class="py-2 rounded-pill color-primary-bg">
                     <span class="font-size-16 px-2 text-white"><i class="fas fa-shopping-cart"></i></span>
                     <span class="px-3 py-2 rounded-pill text-dark bg-light">2</span>
                 </a>

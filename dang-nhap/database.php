@@ -19,7 +19,7 @@
   }
 
   function processLogin($username, $password) {
-    $query = "select password, user_id, user_type FROM user WHERE username = :username";
+    $query = "select password, user_id, user_type, username FROM user WHERE username = :username";
     $memberResult = $GLOBALS['conn']->prepare($query);
     $memberResult->execute(array(
       ':username' => $username
@@ -30,6 +30,7 @@
     $passIsGood = password_verify($pass, $passToCheck);
 
     if($passIsGood) {
+      $_SESSION["username"] = $row["username"];
       $_SESSION["userType"] = $row["user_type"];
       $_SESSION["userId"] = $row["user_id"];
       return true;
