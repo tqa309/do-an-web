@@ -15,17 +15,18 @@ $statement->execute();
 $result=$statement->fetchAll();
 
 
-echo "<tr ><td><strong>Mã Sản Phẩm</strong></td>" .
+echo "<thead><tr ><td><strong>Mã Sản Phẩm</strong></td>" .
     "<td><strong>Tên Sản Phẩm</strong></td>".
-    "<td><strong>Doanh thu</strong></td>";
-
+    "<td><strong>Doanh thu</strong></tr></td></thead>";
+echo"<tbody>";
   // output data of each row
   foreach($result as $row) {
     echo '<tr><td>' . $row["item_id"]. "</td>" .
     "<td>".$row["item_name"]."</td>".
-    "<td>".$row["doanhthu"]."</td>";
+    "<td>".$row["doanhthu"]."</td></tr>";
     }
-    echo" $sql";
+   // echo" $sql";
+echo"</tbody>";
 }
 else
 if ($_POST["type_filter"]=="Theo hãng điện thoại")
