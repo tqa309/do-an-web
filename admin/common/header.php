@@ -143,12 +143,11 @@ sessionTimeOut(600);
                                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Activity Log
                                 </a> -->
-                                <form action="header.php" method="post">
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" name="logoutad" data-toggle="modal" data-target="#logoutModal">
+                                <form action="<?php echo $server?>/common/logout.php" method="post">
+                                <button class="dropdown-item" type="submit"  name="logoutad" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
-                                </a>
+                                </button>
                             </div>
                             </form>
                         </li>

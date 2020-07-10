@@ -1,7 +1,6 @@
 
 <?php
 $path = $_SERVER['DOCUMENT_ROOT'] . "/do-an-web/admin";
-require "$path/common/functions.php";
 include "$path/common/header.php" ?>
         <!-- End of Topbar -->
 

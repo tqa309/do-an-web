@@ -1,4 +1,4 @@
-<?php $path= $_SERVER['DOCUMENT_ROOT']."/do-an-web/admin";
+<?php $path = $_SERVER['DOCUMENT_ROOT'] . "/do-an-web/admin";
 include "$path/common/header.php"; ?>
 
 
@@ -6,7 +6,7 @@ include "$path/common/header.php"; ?>
 <div class="container-fluid mb-5">
         <h1 class="h3 mb-2 text-gray-800 text-center">Thêm sản Phẩm mới</h1>
         <form action="" method="POST" role="form" accept-charset="utf-8">
-                <div class="container w-50">
+                <div class="col-lg-6 container-fluid">
                         <div class="form-group">
                                 <label for="nameProduct">Tên sản phẩm</label>
                                 <input type="text" class="form-control" id="nameProduct" ">
