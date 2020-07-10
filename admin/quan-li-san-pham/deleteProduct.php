@@ -1,4 +1,4 @@
-<?php $path= $_SERVER['DOCUMENT_ROOT']."/git/do-an-web/admin";
+<?php $path= $_SERVER['DOCUMENT_ROOT']."/do-an-web/admin";
 require "$path/common/functions.php";
 $idProduct=$_POST['idProduct'];
 $error=[];

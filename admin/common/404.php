@@ -1,4 +1,4 @@
-<?php $server = "http://" . $_SERVER['SERVER_NAME'] . "/git/do-an-web/admin";?>
+<?php $server = "http://" . $_SERVER['SERVER_NAME'] . "/do-an-web/admin";?>
 
 <!DOCTYPE html>
 <html lang="en">

@@ -5,7 +5,7 @@ if(!isset($_SESSION["userType"]) || intval($_SESSION["userType"]) != 1) {
 }
 
 // require MySQL Connection
-$path = $_SERVER['DOCUMENT_ROOT']."/git/do-an-web/admin";
+$path = $_SERVER['DOCUMENT_ROOT']."/do-an-web/admin";
 require "$path/database/DBController.php";
 
 // require Product Class

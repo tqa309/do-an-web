@@ -1,5 +1,5 @@
 <?php
-$path= $_SERVER['DOCUMENT_ROOT']."/git/do-an-web/admin";
+$path= $_SERVER['DOCUMENT_ROOT']."/do-an-web/admin";
 require "$path/common/functions.php";
 $idProduct = isset($_POST['idProduct']) ? $conn->real_escape_string($_POST['idProduct']) : "";;
 $name=isset($_POST['name']) ? $conn->real_escape_string($_POST['name']) : "";

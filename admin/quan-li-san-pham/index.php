@@ -1,5 +1,5 @@
 <?php
-$path = $_SERVER['DOCUMENT_ROOT'] . "/git/do-an-web/admin";
+$path = $_SERVER['DOCUMENT_ROOT'] . "/do-an-web/admin";
 
 include "$path/common/header.php" ?>
 
