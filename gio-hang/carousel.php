@@ -30,7 +30,7 @@
         echo <<<EOF
         <div class="owl-item"><div class="item py-2">
             <div class="product font-rale">
-                <a href="product.php?item_id=$row[item_id]"><img src="../$row[item_image]" alt="product$row[item_id]" class="img-fluid"></a>
+                <a href="../chi-tiet-san-pham/?id=$row[item_id]"><img src="../$row[item_image]" alt="product$row[item_id]" class="img-fluid"></a>
                 <div class="text-center">
                     <h6 style="margin-top: 15px">$row[item_name]</h6>
                     <div class="rating text-warning font-size-12">
