@@ -10,11 +10,9 @@ include "$path/common/header.php" ?>
 
             <form id="report">
             <div class="form-group" >
+              <h2 class=text-primary>Thông tin của mẫu báo cáo doanh thu</h2>
               <label>Ngày bắt đầu</label>
               <input type="date" class="form-control" id="start_day" name="start_day" aria-describedby="emailHelp" placeholder="Enter email">
-             
-           
-            
               <label >Ngày cuối </label>
               <input type="date" class="form-control" id="end_day" name="end_day">
             </div>
@@ -32,7 +30,12 @@ include "$path/common/header.php" ?>
         <div id="notice_form" class="text-warning"></div>
         <br>
         </div>
+
         <div class="card shadow mb-4">
+          <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Bảng Báo Cáo Doanh Thu</h6>
+          </div>
+            
             <div class="card-body">
               <div class="table-responsive">
                 <table id="adding_table" class="table table-bordered"  width="100%" cellspacing="0">  
@@ -52,7 +55,8 @@ include "$path/common/header.php" ?>
 <script>
   function report()
 {
-  $("#adding_table tr").remove();
+  $("#adding_table tbody").remove();
+  $("#adding_table thead").remove();
     var formData = $('#report').serialize();
     var begin=document.getElementById("start_day").value;
    var end=document.getElementById("end_day").value;
@@ -71,7 +75,7 @@ include "$path/common/header.php" ?>
             data: formData,
             success: function(data) {
                 $('#adding_table').append(data);
-                alert(data);
+                
             }
         });
     }

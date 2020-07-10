@@ -2,10 +2,10 @@
 -- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Jul 10, 2020 at 02:58 AM
--- Server version: 10.4.10-MariaDB
--- PHP Version: 7.3.12
+-- Máy chủ: 127.0.0.1:3306
+-- Thời gian đã tạo: Th7 10, 2020 lúc 03:43 PM
+-- Phiên bản máy phục vụ: 10.4.10-MariaDB
+-- Phiên bản PHP: 7.3.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,64 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `shopee`
+-- Cơ sở dữ liệu: `shopee`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cart`
+-- Cấu trúc bảng cho bảng `bill`
+--
+
+DROP TABLE IF EXISTS `bill`;
+CREATE TABLE IF NOT EXISTS `bill` (
+  `bill_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `date` datetime DEFAULT NULL,
+  `status` text DEFAULT NULL,
+  `pay` text DEFAULT NULL,
+  `total` int(11) NOT NULL,
+  PRIMARY KEY (`bill_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+--
+-- Đang đổ dữ liệu cho bảng `bill`
+--
+
+INSERT INTO `bill` (`bill_id`, `user_id`, `date`, `status`, `pay`, `total`) VALUES
+(1, 2, '2020-03-28 13:07:17', 'chưa chuyển', 'rồi', 366),
+(2, 1, '2020-03-28 13:07:17', 'chÆ°a chuyÃªÌ‰n', 'chÆ°a', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `bill_detail`
+--
+
+DROP TABLE IF EXISTS `bill_detail`;
+CREATE TABLE IF NOT EXISTS `bill_detail` (
+  `bill_detail_id` int(11) NOT NULL AUTO_INCREMENT,
+  `bill_id` int(11) NOT NULL,
+  `item_id` int(11) DEFAULT NULL,
+  `quantity` int(11) NOT NULL,
+  `price` double(10,2) NOT NULL,
+  `total_price` double(10,2) NOT NULL,
+  PRIMARY KEY (`bill_detail_id`),
+  KEY `fk_ten1` (`item_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `bill_detail`
+--
+
+INSERT INTO `bill_detail` (`bill_detail_id`, `bill_id`, `item_id`, `quantity`, `price`, `total_price`) VALUES
+(1, 1, 2, 1, 122.00, 244.00),
+(2, 1, 3, 2, 122.00, 122.00);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `cart`
 --
 
 DROP TABLE IF EXISTS `cart`;
@@ -37,7 +88,7 @@ CREATE TABLE IF NOT EXISTS `cart` (
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `cart`
+-- Đang đổ dữ liệu cho bảng `cart`
 --
 
 INSERT INTO `cart` (`cart_id`, `user_id`, `item_id`) VALUES
@@ -46,7 +97,7 @@ INSERT INTO `cart` (`cart_id`, `user_id`, `item_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `item_type`
+-- Cấu trúc bảng cho bảng `item_type`
 --
 
 DROP TABLE IF EXISTS `item_type`;
@@ -57,7 +108,7 @@ CREATE TABLE IF NOT EXISTS `item_type` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `item_type`
+-- Đang đổ dữ liệu cho bảng `item_type`
 --
 
 INSERT INTO `item_type` (`id_type`, `name_type`) VALUES
@@ -67,7 +118,7 @@ INSERT INTO `item_type` (`id_type`, `name_type`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `item_type_detail`
+-- Cấu trúc bảng cho bảng `item_type_detail`
 --
 
 DROP TABLE IF EXISTS `item_type_detail`;
@@ -78,7 +129,7 @@ CREATE TABLE IF NOT EXISTS `item_type_detail` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `item_type_detail`
+-- Đang đổ dữ liệu cho bảng `item_type_detail`
 --
 
 INSERT INTO `item_type_detail` (`item_id`, `id_type`) VALUES
@@ -96,7 +147,7 @@ INSERT INTO `item_type_detail` (`item_id`, `id_type`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product`
+-- Cấu trúc bảng cho bảng `product`
 --
 
 DROP TABLE IF EXISTS `product`;
@@ -112,7 +163,7 @@ CREATE TABLE IF NOT EXISTS `product` (
 ) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `product`
+-- Đang đổ dữ liệu cho bảng `product`
 --
 
 INSERT INTO `product` (`item_id`, `item_brand`, `item_name`, `item_price`, `item_decription`, `item_image`, `item_register`) VALUES
@@ -136,7 +187,7 @@ INSERT INTO `product` (`item_id`, `item_brand`, `item_name`, `item_price`, `item
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Cấu trúc bảng cho bảng `user`
 --
 
 DROP TABLE IF EXISTS `user`;
@@ -154,7 +205,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `user`
+-- Đang đổ dữ liệu cho bảng `user`
 --
 
 INSERT INTO `user` (`user_id`, `user_type`, `username`, `password`, `email`, `first_name`, `last_name`, `address`, `register_date`) VALUES
@@ -165,7 +216,7 @@ INSERT INTO `user` (`user_id`, `user_type`, `username`, `password`, `email`, `fi
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wishlist`
+-- Cấu trúc bảng cho bảng `wishlist`
 --
 
 DROP TABLE IF EXISTS `wishlist`;
@@ -176,7 +227,7 @@ CREATE TABLE IF NOT EXISTS `wishlist` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `wishlist`
+-- Đang đổ dữ liệu cho bảng `wishlist`
 --
 
 INSERT INTO `wishlist` (`cart_id`, `user_id`, `item_id`) VALUES
