@@ -1,3 +1,60 @@
+function pageFilter(i) {
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        var key = urlParams.get('key');
+        const state = {};
+        const title = '';
+        var formData = $('#filter').serialize();
+        formData += '&key=' + $('#key').text();
+        formData += '&page=' + i;
+        console.log(formData);
+        history.pushState(state, title, './?'+formData);
+        const newqueryString = window.location.search;
+        const newurlParams = new URLSearchParams(newqueryString);
+        var page = newurlParams.get('page');
+        if (page == null) { page = 1; };
+        page = Number(page) - 1;
+        if (key == null) { key = ""; };
+        returnproduct(key, page);
+        $.ajax({
+            type: 'post',
+            data: {
+                key: key,
+                page: page,
+                orderby: $('#orderby').val()
+            },
+            url: 'ProductList.php',
+            dataType: 'json',
+            success: function(response) {
+                var html = "";
+                if (response.length == 0) {
+                    html += `<span style = "margin: auto;">Không có Sản phẩm phù hợp</span>`;
+                } else {
+                    for (value of response) {
+                        let price = Number(value.Price).toLocaleString('de-DE', {
+                            style: 'currency',
+                            currency: 'VND',
+                        });
+                        html += `<div class="col-lg-3 col-md-4 col-sm-6" >`;
+                        html += '<div class = "item py-2" style = "margin: auto; max-width: 250px;margin-bottom:20px;margin-top:0px; ">';
+                        html += '<div class = "product font-rale ">';
+                        html += `<a href="../chi-tiet-san-pham/?id=${value.ID}"><img src="../${value.img} " alt="${value.Name}" class="img-fluid " onMouseOver="this.style='transform:scale(1.15,1.15)'" onMouseOut="this.style='transform:scale(1,1)'"></a>`;
+                        html += `<div class="text-center " > <h6 style="margin-top: 25px;">${value.Name}</h6>`;
+                        html += `<div class="price py-2 "><span style="font-size:20px;color:red;">${price}</span></div><button name="top_sale_submit" class="btn btn-warning font-size-12" type="submit">Add to Cart</button></div> </div> </div></div>`;
+                    }
+                }
+                $('#ProductList').html(html);
+            }
+        })
+        pagelist();
+    }
+
+$(document).ready(function() {
+    $('#orderby').change(function() {
+        pageFilter(1);
+    });
+})
+
 function returnproduct(key, page) {
     $.ajax({
         type: "POST",
@@ -31,12 +88,7 @@ function render(response) {
             html += '<div class = "product font-rale ">';
             html += `<a href="../chi-tiet-san-pham/?id=${value.ID}"><img src="../${value.img} " alt="${value.Name}" class="img-fluid " onMouseOver="this.style='transform:scale(1.15,1.15)'" onMouseOut="this.style='transform:scale(1,1)'"></a>`;
             html += `<div class="text-center " > <h6 style="margin-top: 25px;">${value.Name}</h6>`;
-<<<<<<< HEAD
             html += `<div class="price py-2 "><span style="font-size:20px;color:red;">${price}</span></div><button name="top_sale_submit" class="btn btn-warning font-size-12" type="submit">Add to Cart</button></div> </div> </div></div>`;
-=======
-            html += '<div class="rating text-warning font-size-12 "> <span><i class="fas fa-star "></i></span> <span><i class="fas fa-star "></i></span> <span><i class="fas fa-star "></i></span><span><i class="fas fa-star "></i></span><span><i class="far fa-star "></i></span> </div>';
-            html += `<div class="price py-2 "><span style="font-size:20px;">${value.Price} đ</span></div></div> </div> </div></div>`;
->>>>>>> e0d0178efb75a02848fc145fa126e1d530b937ab
         }
     }
     $('#ProductList').html(html);
@@ -55,6 +107,7 @@ $(document).ready(function() {
     pagelist();
 
 });
+
 $('#s-btn').click(function() {
     var key = $('#key').val();
     const state = {}
@@ -114,7 +167,7 @@ function pagelist() {
 
                 if (page != 1 && page != null) {
 
-                    html += '<li class="page-item"><a class="page-link" style="height: 38px" href="#" onclick="page(';
+                    html += '<li class="page-item"><a class="page-link" style="height: 38px" onclick="pageFilter(';
 
                     html += Number(page) - 1;
 
@@ -130,13 +183,13 @@ function pagelist() {
 
                 for (var i = 1; i <= response; i++) {
 
-                    if (i == page) { html += '<li class="page-item"><a class="page-link" href="#" onclick="page(' + i + ')" style="color:#fff;background-color:#007bff;">' + i + '</a></li>'; } else { html += '<li class="page-item"><a class="page-link" href="#" onclick="page(' + i + ')">' + i + '</a></li>'; }
+                    if (i == page) { html += '<li class="page-item"><a class="page-link" id="page-active" onclick="pageFilter(' + i + ')" style="color:#fff;background-color:#007bff;">' + i + '</a></li>'; } else { html += '<li class="page-item"><a class="page-link" onclick="pageFilter(' + i + ')">' + i + '</a></li>'; }
 
                 }
 
                 if (page != response) {
 
-                    html += '<li class="page-item"><a class="page-link" style="height: 38px" href="#" onclick="page(';
+                    html += '<li class="page-item"><a class="page-link" style="height: 38px" onclick="pageFilter(';
 
                     html += Number(page) + 1;
 
