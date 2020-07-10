@@ -50,7 +50,7 @@ include "$path/common/header.php" ?>
                                 <td class="pt-4"><?php echo $item['item_name'] ?></td>
                                 <td class="pt-4"> <?php echo $item['item_brand']; ?></td>
                                 <td class="pt-4"> <?php echo number_format($item['item_price']); ?></td>
-                                <td class="pt-4"><?php echo $item['item_decription']; ?></td>
+                                <td class="pt-4 text-truncate""><?php echo $item['item_decription']; ?></td>
                                 <td class="pt-4"><img src="<?php echo "../../" . $item['item_image']; ?>" class="" height="160px" width="130px">
                                 </td>
                             </tr>

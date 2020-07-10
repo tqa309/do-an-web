@@ -22,10 +22,10 @@
 
 </head>
 
-<body id="page-top">
+<body id="page-top" >
 
   <!-- Page Wrapper -->
-  <div id="wrapper">
+  <div id="wrapper" style="height:100vh">
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
@@ -36,7 +36,7 @@
       
 
         <!-- Begin Page Content --> 
-        <div class="container-fluid" style="padding:15% 0;">
+        <div class="container-fluid" style="padding:30% 0;">
 
           <!-- 404 Error Text -->
           <div class="text-center">
@@ -52,16 +52,7 @@
       </div>
       <!-- End of Main Content -->
 
-      <!-- Footer -->
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Nhóm 9</span>
-          </div>
-        </div>
-      </footer>
-      <!-- End of Footer -->
-
+     
     </div>
     <!-- End of Content Wrapper -->
 

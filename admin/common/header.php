@@ -1,11 +1,12 @@
 <?php $server = "http://" . $_SERVER['SERVER_NAME'] . "/do-an-web/admin";
 require "$path/common/functions.php";
+session_start();
 $username = $_SESSION['username'];
 $usertype=isset($_SESSION["userType"])?$_SESSION["userType"]:"";
-session_start();
-if ($usertype==""||$usertype!=1) {
-   $link="http://" . $_SERVER['SERVER_NAME']."/do-an-web";
-   header("Location:$link");
+$link="http://" . $_SERVER['SERVER_NAME']."/do-an-web";
+if ($usertype!=1) {
+
+   header("Location:$link/404");
 }
 ?>
 <!DOCTYPE html>
@@ -131,6 +132,7 @@ if ($usertype==""||$usertype!=1) {
                                 <span class="mr-2 d-lg-inline text-gray-600 small"><?php echo $username ?></span>
                                 <!-- <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60"> -->
                             </a>
+                            
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                 <!--  <a class="dropdown-item" href="#">
@@ -145,17 +147,20 @@ if ($usertype==""||$usertype!=1) {
                                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Activity Log
                                 </a> -->
-                                <form action="header.php" method="post">
-                                <div class="dropdown-divider"></div>
+                      
                                 <a class="dropdown-item" href="../../dang-xuat">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Đăng xuất
                                 </a>
                             </div>
-                            </form>
                         </li>
-
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?php echo $link ?>" >
+                                <span class="mr-2 d-lg-inline text-gray-600 small">Trang chủ</span>
+                            </a>
+                    </li>
                     </ul>
+
 
                 </nav>
                 <!-- end-of-header.php -->
