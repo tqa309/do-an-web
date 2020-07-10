@@ -13,11 +13,7 @@
             }
 
             echo <<<EOF
-<<<<<<< HEAD
                 <span class="px-3 border-right border-left"><a href="../tai-khoan" class="text-dark"><i class="fa fa-user" aria-hidden="true"></i> $displayName</a> | <a href="../dang-xuat" class="text-dark">Đăng xuất</a><span>
-=======
-                <span class="px-2 border-right border-right"><i class="fa fa-user" aria-hidden="true"></i> $displayName </span> <span class="px-2 border-right "> <a href="../admin" class="text-dark">Quản lý</a></span> <span class="px-2 border-right "> <a href="../dang-xuat" class="text-dark">Đăng xuất</a></span>
->>>>>>> e0d0178efb75a02848fc145fa126e1d530b937ab
             EOF;
           }
           else {
