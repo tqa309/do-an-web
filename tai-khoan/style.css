@@ -1,12 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Baloo+Thambi+2&family=Raleway&family=Rubik&display=swap");
-
 /*              Sass Template           */
-
-
 /*  global classes  */
-
-button,
-button:focus {
+button, button:focus {
     outline: none !important;
     box-shadow: none !important;
 }
@@ -66,64 +61,48 @@ button:focus {
 #top-sale .owl-carousel .item .product a {
     overflow: hidden;
 }
-
 #top-sale .owl-carousel .item .product img {
     transition: transform 0.5s ease;
 }
-
-#top-sale .row .col-12 {
-    overflow: hidden;
-}
-
-
-/* #top-sale .owl-carousel .item .product img {
-    transition: transform 0.5s ease;
-} */
-
-#top-sale .owl-carousel .item .product img {
-    max-height: 250px;
-    max-width: 250px;
-    vertical-align: center;
-}
-
 .owl-carousel .item .product img:hover {
     transform: scale(1.1);
 }
-
 .owl-carousel .owl-nav button {
     position: absolute;
     top: 30%;
     outline: none;
 }
-
 .owl-carousel .owl-nav button.owl-prev {
     left: 0;
 }
-
 .owl-carousel .owl-nav button.owl-prev span,
 .owl-carousel .owl-nav button.owl-next span {
     font-size: 35px;
     color: #003859;
     padding: 0 1rem;
 }
-
 .owl-carousel .owl-nav button.owl-prev span {
     margin-left: -4rem;
 }
-
 .owl-carousel .owl-nav button.owl-next {
     right: 0;
 }
-
 .owl-carousel .owl-nav button.owl-next span {
     margin-right: -4rem;
 }
 
-
 /*   Special Price Section Template */
-
 #special-price .grid .grid-item {
     margin-right: 1.2rem;
     margin-top: 1rem;
 }
 
+/*# sourceMappingURL=style.css.map */
+.owl-item img.img-fluid {
+  width: 100%;
+  object-fit: cover;
+}
+
+h1 {
+  margin-top: 20px;
+}

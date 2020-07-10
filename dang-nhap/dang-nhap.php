@@ -15,6 +15,13 @@
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
+  <style>
+    .text-danger {
+      margin-left: 10px; 
+      font-size: 0.9em; 
+    }
+  </style>
+
 </head>
 
 <body class="bg-gradient-primary">
@@ -40,18 +47,18 @@
                     <?php 
                     if(isset($_SESSION["errorMessage"])) {
                     ?>
-                    <div class="error-message"><?php  echo $_SESSION["errorMessage"]; ?></div>
+                    <div class="text-danger"><?php  echo $_SESSION["errorMessage"]; ?></div>
                     <?php 
                     unset($_SESSION["errorMessage"]);
                     } 
                     ?>
                     <div class="form-group">
                       <input type="text" class="form-control form-control-user" id="username" name="username" placeholder="Nhập tên đăng nhập">
-                      <span id="user_info" class="error-info"></span>
+                      <div id="user_info" class="text-danger"></div>
                     </div>
                     <div class="form-group">
                       <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="Nhập mật khẩu">
-                      <span id="password_info" class="error-info"></span>
+                      <div id="password_info" class="text-danger"></div>
                     </div>
                     <div class="form-group">
                       <div class="custom-control custom-checkbox small">
@@ -73,7 +80,7 @@
                     <a class="small" href="forgot-password.html">Quên mật khẩu?</a>
                   </div>
                   <div class="text-center">
-                    <a class="small" href="register.html">Tạo tài khoản mới!</a>
+                    <a class="small" href="../dang-ky">Tạo tài khoản mới!</a>
                   </div>
                   <div class="text-center">
                     <a class="small" href="../trang-chu">Trở về trang chủ</a>
@@ -104,20 +111,18 @@
   <script>
     function validate() {
         var $valid = true;
-        $("#user_info").html("");
-        $("#password_info").html("");
         
         var username = $("#username").val();
         var password = $("#password").val();
         console.log(username, password);
         if(username == "") 
         {
-          $("#user_info").html("required");
+          $("#user_info").html("Tên đăng nhập không được để trống!");
         	$valid = false;
         }
         if(password == "") 
         {
-        	$("#password_info").html("required");
+        	$("#password_info").html("Mật khẩu không được để trống!");
             $valid = false;
         }
         return $valid;

@@ -1,6 +1,8 @@
 <?php
     function Login() {
-        session_start();
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
         if (!empty($_SESSION["userId"])) {
             require_once 'session.php';
             $memberResult = getMemberById($_SESSION["userId"]);
@@ -11,7 +13,7 @@
             }
 
             echo <<<EOF
-                <span class="px-3 border-right border-left"><i class="fa fa-user" aria-hidden="true"></i> $displayName | <a href="../dang-xuat" class="text-dark">Đăng xuất</a><span>
+                <span class="px-3 border-right border-left"><a href="../tai-khoan" class="text-dark"><i class="fa fa-user" aria-hidden="true"></i> $displayName</a> | <a href="../dang-xuat" class="text-dark">Đăng xuất</a><span>
             EOF;
           }
           else {
@@ -66,27 +68,27 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav m-auto font-rubik">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Tất cả sản phẩm</a>
+            <ul class="navbar-nav m-auto font-rubik" style="margin-left: 5">
+                <li class="nav-item">
+                    <a class="nav-link" href="../trang-chu">Trang chủ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Khuyến mãi</a>
+                    <a class="nav-link" href="../san-pham">Tất cả sản phẩm</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Hàng mới</i></a>
+                    <a class="nav-link" href="../gio-hang">Giỏ hàng</i></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Điện thoại</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Phụ kiện</i></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Khác</a>
+                    <a class="nav-link" href="../tai-khoan">Tài khoản</a>
                 </li>
             </ul>
-            <form action="../gio-hang" class="font-size-14 font-rale">
+            <form class="form-inline" action="../san-pham">
+                <div class="form-group" style="display: flex; align-items: center; position:relative; top: 8px;">
+                    <input class="form-control" name="key" type="search" placeholder="Tìm sản phẩm..." aria-label="Search" style="height: calc(1.2em + 2px + 0.75rem);">
+                    <button class="btn btn-outline-info" type="submit" style="margin: 0 10px"><i class="fa fa-search" aria-hidden="true"></i></button>
+                </div>
+            </form>
+            <form action="../gio-hang" class="font-size-14 font-rale" style="position:relative; top: 8px;">
                 <a href="../gio-hang" class="py-2 rounded-pill color-primary-bg">
                     <span class="font-size-16 px-2 text-white"><i class="fas fa-shopping-cart"></i></span>
                     <span class="px-3 py-2 rounded-pill text-dark bg-light">2</span>
@@ -95,5 +97,4 @@
         </div>
     </nav>
     <!-- !Primary Navigation -->
-
 </header>

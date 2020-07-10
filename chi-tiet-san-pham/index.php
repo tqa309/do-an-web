@@ -36,7 +36,7 @@ include('../common/header.php');
 // parse_str($url_components['query'], $params);
 // $item_id = $params['id'];
 ?>
-    <section id="product" class=" py-3">
+    <section id="product" class=" py-5">
         <div class="container">
             <div class="row">
                 <div class="col-sm-6" id="SP_img">
@@ -70,8 +70,10 @@ include('../common/header.php');
                 id: id
             },
             success: function(response) {
-                console.log(response);
-                
+                let price = Number(response.Price).toLocaleString('de-DE', {
+                style: 'currency',
+                currency: 'VND',
+            });
                 html = "";
                 // html += "<p>Chưa có thông tin</>";
                 html += `<img src="../${response.img}" alt="${response.Name}" class="img-fluid" style="position: relative;">`;
@@ -84,7 +86,7 @@ include('../common/header.php');
                 html += `<div class="col-6 col-lg-5 font-rale" style="font-size:16px;"> Giá gốc: </div>`;
                 html += `<div class="col-6 col-lg-7 font-rale" style="font-size:16px;"> <strike> ${response.Price * 10}</strike> </div>`;
                 html += `<div class="col-6 col-lg-5 font-rale" style="font-size:18px;margin-top:15px">Giá khuyến mãi: </div>`;
-                html += `<div class="col-6 col-lg-7 font-rale"><span style="font-size:26px;"class="text-danger">${response.Price}</span> <br><small class="text-dark font-size-12">&nbsp;&nbsp;Bao gồm VAT 10%</small></div>`;
+                html += `<div class="col-6 col-lg-7 font-rale"><span style="font-size:26px;"class="text-danger">${price}</span> <br><small class="text-dark font-size-12">&nbsp;&nbsp;Bao gồm VAT 10%</small></div>`;
                 html += `</div>`;    
                 // html += `<table class="my-3"> <tbody><tr class="font-rale"style="font-size:18px;"><td>Giá gốc:</td><td><strike>$ ${response.Price * 100} </strike></td></tr>`;
                 // html += `<tr class="font-rale"style="font-size:18px;"><td>Giá khuyến mãi:</td><td style="font-size:26px;"class="text-danger">$<span>${response.Price}</span><small class="text-dark font-size-12">&nbsp;&nbsp;Bao gồm VAT 10%</small></td></tr>`;

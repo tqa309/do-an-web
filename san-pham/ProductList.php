@@ -5,8 +5,23 @@ $conn = $db->connect();
 
 $key=$_POST['key'];
 $page=$_POST['page'];
-$start= $page * 12;
-// $key="";
+$start= intval($page) * 12;
+
+$orderby = '';
+if (!isset($_POST['orderby'])) {
+    $orderby = "order by `item_price`";
+} else {
+    if (strval($_POST['orderby']) == 'price-desc') {
+        $orderby = "order by `item_price` desc";
+    } else {
+        if (strval($_POST['orderby']) == 'date') {
+            $orderby = "order by `item_register` desc";
+        } else {
+            $orderby = "order by `item_price`";
+        }
+    }
+}
+
 $sql="SELECT * FROM product ";
 // $result='';
 // if($key == ""){
@@ -15,10 +30,11 @@ $sql="SELECT * FROM product ";
 // else{
 //     $result = $conn->query('SELECT * FROM `product` WHERE `item_name` like "'.$key.'" or `item_brand` like "'.$key.'"');
 // }
-if($key != ""){
-    $sql .="WHERE `item_name` like '%".$key."%' or `item_brand` like '".$key."'";
-}
-$sql.="LIMIT $start, 12";
+
+$sql .="WHERE `item_name` like '%".$key."%' or `item_brand` like '%".$key."%' " . $orderby;
+
+
+$sql.=" LIMIT $start, 12";
 $result = $conn->query($sql);
 $KQ=array();
 while ($rows = $result->fetch_assoc()) {

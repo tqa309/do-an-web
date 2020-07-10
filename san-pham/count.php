@@ -23,6 +23,5 @@ if($key != ""){
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 $total_records = $row['total'];
-$total_page = ceil($total_records / 12);
-echo json_encode($total_page);
+echo $total_records;
 $conn->close();

@@ -8,7 +8,7 @@
     
     $isLoggedIn = processLogin($username, $password);
     if (! $isLoggedIn) {
-      $_SESSION["errorMessage"] = "Invalid Credentials";
+      $_SESSION["errorMessage"] = "Sai tên đăng nhập hoặc mật khẩu";
       header("Location: ./");
     } else {
       if (intval($_SESSION["userType"]) == 1) {

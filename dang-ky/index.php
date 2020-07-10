@@ -1,4 +1,4 @@
- <?php $server= "http://" . $_SERVER['SERVER_NAME'] . "/do-an-web/admin"; ?>
+ <?php $server= "http://" . $_SERVER['SERVER_NAME'] . "/git/do-an-web/admin"; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -77,7 +77,10 @@
                                 <a class="small" href="forgot-password.html">Quên mật khẩu?</a>
                             </div>
                             <div class="text-center">
-                                <a class="small" href="login.html">Đã có tài khoản? Đăng nhập!</a>
+                                <a class="small" href="../dang-nhap">Đã có tài khoản? Đăng nhập!</a>
+                            </div>
+                            <div class="text-center">
+                                <a class="small" href="../trang-chu">Trở về trang chủ</a>
                             </div>
                         </div>
                     </div>
