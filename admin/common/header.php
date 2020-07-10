@@ -1,6 +1,12 @@
 <?php $server = "http://" . $_SERVER['SERVER_NAME'] . "/do-an-web/admin";
 require "$path/common/functions.php";
 $username = $_SESSION['username'];
+$usertype=isset($_SESSION["userType"])?$_SESSION["userType"]:"";
+session_start();
+if ($usertype==""||$usertype!=1) {
+   $link="http://" . $_SERVER['SERVER_NAME']."/do-an-web";
+   header("Location:$link");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

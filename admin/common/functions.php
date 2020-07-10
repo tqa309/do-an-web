@@ -1,8 +1,5 @@
 <?php
-session_start();
-if(!isset($_SESSION["userType"]) || intval($_SESSION["userType"]) != 1) {
-  require_once '../common/404.php';
-}
+
 
 // require MySQL Connection
 $path = $_SERVER['DOCUMENT_ROOT'] . "/do-an-web/admin";

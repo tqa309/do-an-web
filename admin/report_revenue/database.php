@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
 $username = "root";
-$password = "Tuananh19022k";
+$password = "";
 
 
   $conn = new PDO("mysql:host=$servername;dbname=shopee", $username, $password);

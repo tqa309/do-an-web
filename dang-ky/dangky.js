@@ -78,7 +78,7 @@ $('#register').click(async function () {
         success: function (response) {
             notification(response)
             setTimeout(() => {
-                window.location.replace("../login.php");
+                window.location.replace("../dang-nhap");
             }, 1500);
         }
     });
