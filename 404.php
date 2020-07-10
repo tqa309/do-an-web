@@ -36,7 +36,7 @@
       
 
         <!-- Begin Page Content --> 
-        <div class="container-fluid" style="padding:30% 0;">
+        <div class="container-fluid" style="padding: 15% 0 0;">
 
           <!-- 404 Error Text -->
           <div class="text-center">
