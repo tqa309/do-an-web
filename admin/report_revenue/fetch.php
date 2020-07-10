@@ -15,9 +15,9 @@ $statement->execute();
 $result=$statement->fetchAll();
 
 
-echo "<thead><tr ><td><strong>Mã Sản Phẩm</strong></td>" .
-    "<td><strong>Tên Sản Phẩm</strong></td>".
-    "<td><strong>Doanh thu</strong></tr></td></thead>";
+echo "<thead><tr ><td>Mã Sản Phẩm</td>" .
+    "<td>Tên Sản Phẩm</td>".
+    "<td>Doanh thu</tr></td></thead>";
 echo"<tbody>";
   // output data of each row
   foreach($result as $row) {
@@ -41,14 +41,16 @@ if ($_POST["type_filter"]=="Theo hãng điện thoại")
     $result=$statement->fetchAll();
 
 
-    echo "<tr ><td><strong>Thương hiệu</strong></td>" .
-        "<td><strong>Doanh thu</strong></td>";
+    echo "<thead><tr ><td><strong>Thương hiệu</strong></td>" .
+        "<td><strong>Doanh thu</strong></td></thead>";
 
     // output data of each row
+    echo"<tbody>";
     foreach($result as $row) {
         echo '<tr><td>' . $row["item_brand"]. "</td>" .
         "<td>".$row["doanhthu"]."</td>";
     }
+    echo"</tbody>";
 }
 else
 if ($_POST["type_filter"]=="Tất cả")
@@ -62,12 +64,13 @@ if ($_POST["type_filter"]=="Tất cả")
     $result=$statement->fetchAll();
 
 
-    echo "<tr >" .
-        "<td><strong>Doanh thu</strong></td>";
-
+    echo "<thead><tr >" .
+        "<td><strong>Doanh thu</strong></td></thead>";
+    echo"<tbody>";
     // output data of each row
     foreach($result as $row) {
-        echo '<tr><td>'.$row["doanhthu"].'</td>"';
+        echo '<tr><td>'.$row["doanhthu"].'</td></tr>';
     }
+    echo"</tbody>";
 }
 ?>
