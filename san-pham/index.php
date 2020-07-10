@@ -45,6 +45,7 @@ include('../common/header.php');
             </div>
         </div>
 </section>
+
 <script src="index.js"></script>
 </main>
         
