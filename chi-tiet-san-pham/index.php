@@ -1,9 +1,19 @@
 <?php
+include('../trang-chu/carousel.php');
 // include header.php file
 include('../common/header.php');
 ?>
 <?php
+require ('../san-pham/DBController.php');
+// DBController object
+$db = new DBController();
 
+// Product object
+$product = new Product($db);
+$product_shuffle = $product->getData();
+
+// Cart object
+$Cart = new Cart($db );
 // shuffle($product_shuffle);
 
 // // request method post
@@ -16,25 +26,25 @@ include('../common/header.php');
 // }
 
 
-//get id from url
-// $url="";
-// if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') 
-// $url = "https"; 
-// else
-// $url = "http"; 
+// get id from url
+$url="";
+if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') 
+$url = "https"; 
+else
+$url = "http"; 
 
-// // Here append the common URL characters. 
-// $url .= "://"; 
+// Here append the common URL characters. 
+$url .= "://"; 
 
 // // Append the host(domain name, ip) to the URL. 
-// $url .= $_SERVER['HTTP_HOST']; 
+$url .= $_SERVER['HTTP_HOST']; 
 
-// // Append the requested resource location to the URL 
-// $url .= $_SERVER['REQUEST_URI'];
-// //echo $url;
-// $url_components = parse_url($url);
-// parse_str($url_components['query'], $params);
-// $item_id = $params['id'];
+// // Append the requested resource location to the URL
+$url .= $_SERVER['REQUEST_URI'];
+//echo $url;
+$url_components = parse_url($url);
+parse_str($url_components['query'], $params);
+$item_id = $params['id'];
 ?>
     <section id="product" class=" py-3">
         <div class="container">
@@ -51,6 +61,20 @@ include('../common/header.php');
             </div>
         </div>
     </section>
+    <section id="top-sale">
+    <div class="container py-5">
+        <h4 class="font-rubik font-size-20">Khuyến Mãi Hot</h4>
+        <hr>
+        <div class="owl-carousel owl-theme owl-loaded owl-drag"> 
+          <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(-552px, 0px, 0px); transition: all 0s ease 0s; width: 2141px;">
+              <?php
+                print_item('T1');
+              ?>
+          </div>
+    </div>
+  </div>
+    </div>
+</section>
     <?php
     // include footer.php file
     // include ('_top-sale.php');
@@ -79,16 +103,13 @@ include('../common/header.php');
                 $('#SP_img').html(html);
                 html = "";
                 html += `<h1 class="font-baloo">${response.Name} </h1>`;
-                html += ` <small style="font-size:14px; font-style:italic"> by ${response.Brand}</small><hr class="m-0">`;
+                html += ` <small style="font-size:12px; font-style:italic"> by ${response.Brand}</small><hr class="m-0">`;
                 html+=`<div class="row"style="margin-top:20px">`
-                html += `<div class="col-6 col-lg-5 font-rale" style="font-size:16px;"> Giá gốc: </div>`;
-                html += `<div class="col-6 col-lg-7 font-rale" style="font-size:16px;"> <strike> ${response.Price * 10}</strike> </div>`;
-                html += `<div class="col-6 col-lg-5 font-rale" style="font-size:18px;margin-top:15px">Giá khuyến mãi: </div>`;
-                html += `<div class="col-6 col-lg-7 font-rale"><span style="font-size:26px;"class="text-danger">${response.Price}</span> <br><small class="text-dark font-size-12">&nbsp;&nbsp;Bao gồm VAT 10%</small></div>`;
-                html += `</div>`;    
-                // html += `<table class="my-3"> <tbody><tr class="font-rale"style="font-size:18px;"><td>Giá gốc:</td><td><strike>$ ${response.Price * 100} </strike></td></tr>`;
-                // html += `<tr class="font-rale"style="font-size:18px;"><td>Giá khuyến mãi:</td><td style="font-size:26px;"class="text-danger">$<span>${response.Price}</span><small class="text-dark font-size-12">&nbsp;&nbsp;Bao gồm VAT 10%</small></td></tr>`;
-                // html += `</tbody> </table>`;
+                html += `<div class=" col-5 font-rale" style="font-size:14px;"> Giá gốc: </div>`;
+                html += `<div class=" col-7 font-rale" style="font-size:14px;"> <strike> ${response.Price * 10} đ</strike> </div>`;
+                html += `<div class=" col-5 font-rale" style="font-size:16px;margin-top:15px">Giá khuyến mãi: </div>`;
+                html += `<div class=" col-7 font-rale"><span style="font-size:24px;"class="text-danger">${response.Price} đ</span> <br><small class="text-dark font-size-12">&nbsp;&nbsp;Bao gồm VAT 10%</small></div>`;
+                html += `</div>`;
                 html += `<div id="policy"><div class="d-flex"><div class="return text-center"style="margin-right: 3.5rem !important;">`;
                 html += `<div class="font-size-20 my-2 color-second"><span class="fas fa-retweet border p-3 rounded-pill"></span></div>`;
                 html += `<a href="#" class="font-rale font-size-16">10 ngày <br> đổi trả</a></div><div class="return text-center "style="margin-right: 3.5rem !important;"> <div class="font-size-20 my-2 color-second">`;
@@ -96,15 +117,55 @@ include('../common/header.php');
                 html += `<a href="#" class="font-rale font-size-16">Giao hàng <br>tận nơi</a> </div>`;
                 html += `<div class="return text-center" style="margin-right: 3.5rem !important;">`;
                 html += `<div class="font-size-20 my-2 color-second"><span class="fas fa-check-double border p-3 rounded-pill"></span></div>`;
-                html += `<a href="#" class="font-rale font-size-16">Bảo hành <br>1 năm</a></div></div></div>`;
-                html += `<hr>`;
-                html += `<div class="col-12" style="margin:15px auto;"><button type="submit" name="product_submit" class="btn btn-warning form-control">Thêm vào giỏ hàng</button> </div>`;
-                html += `<div class="col-12" style="margin:15px auto;"><a href="../gio-hang" name="product_submit" class="btn btn-danger form-control">Mua ngay</a> </div>`;
+                html += `<a href="#" class="font-rale font-size-16">Bảo hành <br>1 năm</a></div></div></div><hr>`;
+                html += `<?php
+                        if (in_array($item_id, $Cart->getCartId($product->getData('cart')) ?? [])){
+                            echo '<div class="col-12" style="margin:15px auto;"><button type="submit" disabled class="btn btn-success font-size-16 form-control">Đã thêm vào giỏ hàng</button></div>';
+                            echo '<div class="col-12" style="margin:15px auto;"><a href="../gio-hang" name="product_submit" class="btn btn-danger form-control">Mua ngay</a> </div>';
+                        }else{
+                            echo '<div class="col-12" style="margin:15px auto;"><button type="submit" name="top_sale_submit" class="btn btn-warning font-size-16 form-control">Thêm vào giỏ hàng</button></div>';
+                            echo '<div class="col-12" style="margin:15px auto;"><a href="../gio-hang" name="product_submit" class="btn btn-danger form-control">Mua ngay</a> </div>';
+                        }
+                        ?>`;
+                // html += `<div class="col-12" style="margin:15px auto;"><button type="submit" name="product_submit" class="btn btn-warning form-control">Thêm vào giỏ hàng</button> </div>`;
+                // html += `<div class="col-12" style="margin:15px auto;"><a href="../gio-hang" name="product_submit" class="btn btn-danger form-control">Mua ngay</a> </div>`;
                 $('#SP_P').html(html);
                 html = "";
                 html += `<p>${response.Des}</p>`;
                 $('#SP_D').append(html);
             }
         });
+
     }
+    $(document).ready(function(){
+
+$("#banner-area .owl-carousel").owlCarousel({
+    dots: true,
+    items: 1
+});
+
+$(".owl-carousel").owlCarousel({
+    loop: false,
+    dots: false,
+    responsive : {
+        0: {
+            items: 1,
+            nav: false
+        },
+        600: {
+            items: 3,
+            nav: true
+        },
+        1000 : {
+            items: 5,
+            nav: true
+        }
+    }
+});
+
+$(".button-group").on("click", "button", function(){
+    var filterValue = $(this).attr('data-filter');
+    $grid.isotope({ filter: filterValue});
+})
+});
 </script>
