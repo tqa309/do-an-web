@@ -1,4 +1,4 @@
- <?php $server= "http://" . $_SERVER['SERVER_NAME'] . "/git/do-an-web/admin"; ?>
+ <?php $server= "http://" . $_SERVER['SERVER_NAME'] . "/do-an-web/admin"; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -44,10 +44,10 @@
                             <form class="user">
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" id="FirstName" placeholder="Họ">
+                                        <input type="text" class="form-control form-control-user" id="LasttName" placeholder="Họ">
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control form-control-user" id="LastName" placeholder="Tên">
+                                        <input type="text" class="form-control form-control-user" id="FirstName" placeholder="Tên">
                                     </div>
                                 </div>
                                 <div class="form-group">

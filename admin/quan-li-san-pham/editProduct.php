@@ -1,4 +1,4 @@
-<?$path= $_SERVER['DOCUMENT_ROOT']."/do-an-web/admin";
+<?php $path= $_SERVER['DOCUMENT_ROOT']."/do-an-web/admin";
 require "$path/common/functions.php";
 $idProduct = isset($_POST['idProduct']) ? $conn->real_escape_string($_POST['idProduct']) : "";;
 $name=isset($_POST['name']) ? $conn->real_escape_string($_POST['name']) : "";
@@ -12,8 +12,9 @@ $newImageName = uniqid('uploaded_', true)
     . '.' . strtolower(pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION));
 $upload_directory ="../../assets/products/".$newImageName;
 move_uploaded_file($image, $upload_directory);
+$acces="assets/products/".$newImageName;
 
-$sql = "UPDATE product SET item_name='$name',item_brand='$brand',item_price='$price',item_decription='$decription',item_image='$upload_directory' where item_id='$idProduct'";
+$sql = "UPDATE product SET item_name='$name',item_brand='$brand',item_price='$price',item_decription='$decription',item_image='$acces' where item_id='$idProduct'";
 if ($conn->query($sql) == true) {
 	$error[] = array(
 		"error" => false,

@@ -11,13 +11,13 @@ include "$path/common/header.php" ?>
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered table-hover text-center table-responsive" id="dataProduct" width="100%" cellspacing="0">
+                <table class="table table-bordered table-hover text-center" id="dataProduct" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th>Thao tác</th>
                             <th>ID</th>
                             <th>Khuyến Mãi Hot</th>
-                            <th>Sản phẩm mới</th>
+                            <th>Sản phẩm nổi bật</th>
                             <th>Tên Sản Phẩm</th>
                             <th>Hãng</th>
                             <th>Giá bán</th>
@@ -29,14 +29,14 @@ include "$path/common/header.php" ?>
                         <?php $type_detail = $product->getData("item_type_detail");
                         foreach ($product->getData() as $item) { ?>
                             <tr data-id="<?php echo $item['item_id'] ?>">
-                                <td class="d-flex justify-content-center " style="    height: 175px;">
-                                    <a data-toggle="modal" data-target="#exampleModalCenter" class=" mr-4 mt-3" style="width: max-content;cursor:pointer">
+                                <td class="d-flex justify-content-center border-right-0" >
+                                    <a data-toggle="modal" data-target="#exampleModalCenter" class="mt-3" style="width: max-content;cursor:pointer">
                                         <i class="fas fa-edit edit-product"></i></a>
                                     <a class=" pl-4 mt-3  " style="cursor:pointer" onclick="deleteProduct(this)">
                                         <i class="fas fa-trash-alt "></i></a>
                                 </td>
 
-                                <th class="pt-4"><?php echo $item['item_id']; ?></th>
+                                <th class="pt-4 border-left"><?php echo $item['item_id']; ?></th>
                                 <td class="pt-4"> <input class="form-check-input top-sale" type="checkbox" value="T1" <?php foreach ($type_detail as $value) {
                                                                                                                             if (in_array($item['item_id'], $value) and in_array("T1", $value)) {
                                                                                                                                 echo "checked";
@@ -50,7 +50,7 @@ include "$path/common/header.php" ?>
                                 <td class="pt-4"><?php echo $item['item_name'] ?></td>
                                 <td class="pt-4"> <?php echo $item['item_brand']; ?></td>
                                 <td class="pt-4"> <?php echo number_format($item['item_price']); ?></td>
-                                <td class="pt-4 text-truncate""><?php echo $item['item_decription']; ?></td>
+                                <td class="pt-4 "><?php echo $item['item_decription']; ?></td>
                                 <td class="pt-4"><img src="<?php echo "../../" . $item['item_image']; ?>" class="" height="160px" width="130px">
                                 </td>
                             </tr>
@@ -58,6 +58,7 @@ include "$path/common/header.php" ?>
                         } ?>
                     </tbody>
                 </table>
+            
             </div>
         </div>
     </div>
