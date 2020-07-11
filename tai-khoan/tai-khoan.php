@@ -40,7 +40,7 @@
               <label for="address">Địa chỉ</label>
               <input class="form-control" id="address" name="address" value="$row[address]">
             </div>
-            <button type="button" id="submit" class="btn btn-primary mt-2">Cập nhật thông tin</button>
+            <button type="submit" id="submit" class="btn btn-primary mt-2">Cập nhật thông tin</button>
         </form>
       </div>
     </main>

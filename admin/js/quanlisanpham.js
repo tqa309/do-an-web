@@ -258,9 +258,11 @@ $('#submit').click(async function () {
 
         success: async function (data) {
             await notification(data);
-            setTimeout(function () {
-                location.reload();
-            }, 1000)
+           if (data[0].error == false) {
+                setTimeout(function() {
+                    location.reload();
+                }, 1000)
+            }
         }
     })
 

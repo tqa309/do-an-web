@@ -1,4 +1,4 @@
-const deleteProduct = async function (param) {
+const deleteProduct = async function(param) {
     let btn = $(param);
     let idProduct = btn.closest('tr').children().eq(1).text();
     productRow = btn.closest('tr').addClass('deleteProduct');
@@ -10,8 +10,8 @@ const deleteProduct = async function (param) {
         data: {
             idProduct: idProduct
         },
-        success: async function (data) {
-            await notification(data,1);
+        success: async function(data) {
+            await notification(data, 1);
             $('.deleteProduct').fadeOut(700);
         }
 
@@ -19,7 +19,7 @@ const deleteProduct = async function (param) {
 
 }
 
-$('.edit-product').click(async function () {
+$('.edit-product').click(async function() {
     let product = $(this).closest('tr');
     let id = product.children().eq(1).text().trim();
     let name = product.children().eq(4).text().trim();
@@ -37,7 +37,7 @@ $('.edit-product').click(async function () {
 
 })
 //? add product to topsale
-$('.top-sale').change(async function () {
+$('.top-sale').change(async function() {
     let checkbox = $(this);
     let idProduct = checkbox.closest('tr').children().eq(1).text()
     if (this.checked) {
@@ -48,7 +48,7 @@ $('.top-sale').change(async function () {
                 idProduct: idProduct
             },
             dataType: "json",
-            success: async function (data) {
+            success: async function(data) {
                 await notification(data);
             }
         });
@@ -60,15 +60,15 @@ $('.top-sale').change(async function () {
                 idProduct: idProduct
             },
             dataType: "json",
-            success: async function (data) {
-                await notification(data,1);
+            success: async function(data) {
+                await notification(data, 1);
 
             }
         });
     }
 
 })
-$('.special-price').change(async function () {
+$('.special-price').change(async function() {
     let checkbox = $(this);
     let idProduct = checkbox.closest('tr').children().eq(1).text()
     if (this.checked) {
@@ -79,7 +79,7 @@ $('.special-price').change(async function () {
                 idProduct: idProduct
             },
             dataType: "json",
-            success: async function (data) {
+            success: async function(data) {
                 await notification(data);
             }
         });
@@ -91,15 +91,15 @@ $('.special-price').change(async function () {
                 idProduct: idProduct
             },
             dataType: "json",
-            success: async function (data) {
-                await notification(data,1);
+            success: async function(data) {
+                await notification(data, 1);
             }
         });
     }
 
 })
 
-$('#updatebtn').click(async function () {
+$('#updatebtn').click(async function() {
     let idProduct = $('#idProduct').val();
     let name = $('#nameProduct').val().trim();
     let brand = $('#brandProduct').val().trim();
@@ -136,7 +136,7 @@ $('#updatebtn').click(async function () {
             dataType: 'Json',
             data: form_data,
 
-            success: async function (data) {
+            success: async function(data) {
                 await notification(data);
                 product = $(`tr[data-id=${idProduct}]`)
                 product.children().eq(4).text(name);
@@ -182,7 +182,7 @@ $('#updatebtn').click(async function () {
             dataType: 'Json',
             data: form_data,
 
-            success: async function (data) {
+            success: async function(data) {
                 await notification(data);
                 product = $(`tr[data-id=${idProduct}]`);
                 product.children().eq(4).text(name);
@@ -200,7 +200,7 @@ function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
 
-        reader.onload = function (e) {
+        reader.onload = function(e) {
             $('#uploadimg')
                 .attr('src', e.target.result).width(200)
                 .height(250);
@@ -212,19 +212,19 @@ function readURL(input) {
     }
 }
 //? function add data product to database
-$('#submit').click(async function () {
+$('#submit').click(async function() {
     let name = $('#nameProduct').val();
     let brand = $('#brandProduct').val();
     let price = $('#priceProduct').val();
     let decription = $('#decriptionProduct').val();
     let file = $('#pictureProduct').prop('files')[0] ? $('#pictureProduct').prop('files')[0] : "";
-    let match = ["image/gif", "image/png", "image/jpg", "image/jpeg","image/webp"];
+    let match = ["image/gif", "image/png", "image/jpg", "image/jpeg", "image/webp"];
     if (await file === "") {
         alert("File ảnh sản phẩm rỗng")
         return;
     }
     let type = file.type;
-    if (type != match[0] && type != match[1] && type != match[2] && type != match[3]&& type != match[4]) {
+    if (type != match[0] && type != match[1] && type != match[2] && type != match[3] && type != match[4]) {
         alert("File không phải định dạng ảnh");
         return;
     }
@@ -256,18 +256,16 @@ $('#submit').click(async function () {
         dataType: 'Json',
         data: form_data,
 
-        success: async function (data) {
+        success: async function(data) {
             await notification(data);
-            setTimeout(function () {
-                location.reload();
-            }, 1000)
+            
         }
     })
 
 });
 
 // ? function show alert
-notificationSuccess = function (message) {
+notificationSuccess = function(message) {
     VanillaToasts.create({
         title: 'Thông báo',
         text: message,
@@ -276,7 +274,7 @@ notificationSuccess = function (message) {
         timeout: 6000 // hide after 5000ms, // optional parameter
     });
 }
-notificationWarning = function (message) {
+notificationWarning = function(message) {
     VanillaToasts.create({
         title: 'Thông báo',
         text: message,
@@ -285,7 +283,7 @@ notificationWarning = function (message) {
         timeout: 6000 // hide after 5000ms, // optional parameter
     });
 }
-notificationError = function (message) {
+notificationError = function(message) {
     VanillaToasts.create({
         title: 'Thông báo',
         text: message,
@@ -294,18 +292,18 @@ notificationError = function (message) {
         timeout: 6000 // hide after 5000ms, // optional parameter
     });
 }
-notification = async function (data, type=0) {
+notification = async function(data, type = 0) {
     if (type == 0) {
         if (data[0].error == false) {
             await notificationSuccess(data[0].message);
         } else {
             await notificationError(data[0].message)
         }
-    }else{
+    } else {
         if (data[0].error == false) {
             await notificationWarning(data[0].message);
         } else {
             await notificationError(data[0].message)
-        } 
+        }
     }
 }

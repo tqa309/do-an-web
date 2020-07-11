@@ -38,7 +38,7 @@
 </section>
 <section id="new-phone">
     <div class="container py-5">
-        <h4 class="font-rubik font-size-20">Sản Phẩm Mới</h4>
+        <h4 class="font-rubik font-size-20">Sản Phẩm Nổi Bật Nhất</h4>
         <hr>
         <!-- owl carousel -->
         <div class="owl-carousel owl-theme owl-loaded owl-drag"> 

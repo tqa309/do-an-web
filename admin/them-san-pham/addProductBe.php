@@ -12,7 +12,7 @@ $newImageName = uniqid('uploaded_', true)
 $upload_directory ="../../assets/products/".$newImageName;
 $acces="assets/products/".$newImageName;
 move_uploaded_file($image, $upload_directory);
-	$sql ="INSERT into product(item_brand,item_name,item_price,item_decription,item_image,item_register) values('$brand','$name','$price','$decription','$acces')";
+	$sql ="INSERT into product(item_brand,item_name,item_price,item_decription,item_image,item_register) values('$brand','$name','$price','$decription','$acces','".date("Y-m-d h:m:s")."')";
 		if($conn->query($sql)==true){
 $error[]=array(
 		"error"=>false,

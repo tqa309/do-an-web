@@ -1,20 +1,15 @@
 // Call the dataTables jQuery plugin
-$(document).ready(function() {
+$(document).ready(function () {
     $('#dataProduct').removeAttr('width').DataTable({
-            scrollCollapse: false,
-            paging: true,
-            lengthMenu: [
-                [5, 10, 25, 50, 100, -1],
-                [5, 10, 25, 50, 100, "All"]
-            ],
-            columnDefs: [
-                { width: "50%", targets: 0 }
-            ]
+        scrollCollapse: true,
+        scrollX: true,
+        paging: true,
+        lengthMenu: [
+            [5, 10, 25, 50, 100, -1],
+            [5, 10, 25, 50, 100, "All"]
         ],
-        scroller: {
-            rowHeight: "100px"
-        },
-        fixedColumns: false,
+       
+        
         language: {
             lengthMenu: "_MENU_ sản phẩm/trang",
             search: "Tìm kiếm",

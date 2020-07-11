@@ -51,7 +51,7 @@
 
                                             <div class="col-sm-2 text-right">
                                                 <div class="font-size-20 text-danger font-baloo">
-                                                    $<span class="product_price">50,000,000đ</span>
+                                                    <span class="product_price">50,000,000đ</span>
                                                 </div>
                                             </div>
                                         </div>
