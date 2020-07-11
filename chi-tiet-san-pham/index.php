@@ -108,7 +108,7 @@ $item_id = $params['id'];
                 html += ` <small style="font-size:12px; font-style:italic"> by ${response.Brand}</small><hr class="m-0">`;
                 html+=`<div class="row"style="margin-top:20px">`
                 html += `<div class="col-6 col-lg-5 font-rale" style="font-size:16px;"> Giá gốc: </div>`;
-                html += `<div class="col-6 col-lg-7 font-rale" style="font-size:16px;"> <strike> ${response.Price * 10}</strike> </div>`;
+                html += `<div class="col-6 col-lg-7 font-rale" style="font-size:16px;"> <strike> ${price}</strike> </div>`;
                 html += `<div class="col-6 col-lg-5 font-rale" style="font-size:18px;margin-top:15px">Giá khuyến mãi: </div>`;
                 html += `<div class="col-6 col-lg-7 font-rale"><span style="font-size:26px;"class="text-danger">${price}</span> <br><small class="text-dark font-size-12">&nbsp;&nbsp;Bao gồm VAT 10%</small></div>`;
                 html += `</div>`;    

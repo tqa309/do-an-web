@@ -5,10 +5,14 @@
     try {
       $sql = "SELECT * FROM cart c join product p on c.item_id = p.item_id where user_id = :userId";
       $stmt = $GLOBALS['conn']->prepare($sql);
+      if (isset($_SESSION['userId'])) {
+        $userId = $_SESSION['userId'];
+      } else {
+        $userId = '-1';
+      }
       $stmt->execute(array(
-        ':userId' => $_SESSION['userId']
+        ':userId' => $userId
       ));
-      $userId = $_SESSION['userId'];
       $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
       $i = 0;
       $sum = 0;

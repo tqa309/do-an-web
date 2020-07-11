@@ -26,6 +26,9 @@ $(document).ready(function(){
 
 function addToCart(userId, itemId, quantity) {
     if (userId != null) {
+        $(function(){
+            alert("Sản phẩm đã được thêm vào giỏ");
+        });
         $.ajax({
         type: 'post',
         url: '../gio-hang/xu-ly-hang.php',
@@ -36,6 +39,7 @@ function addToCart(userId, itemId, quantity) {
         },
         success: function(data) {
             $('#totalItems').html(data);
+            
         }
         });
     }

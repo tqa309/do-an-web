@@ -87,7 +87,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav m-auto font-rubik" style="margin-left: 5">
+            <ul class="nav navbar-nav m-auto font-rubik" style="margin-left: 5">
                 <li class="nav-item">
                     <a class="nav-link" href="../trang-chu">Trang chủ</a>
                 </li>
@@ -127,7 +127,7 @@
                                     echo '0';
                                 }
                             } else {
-                                echo '1';
+                                echo '0';
                             }
                         ?>
                     </span>

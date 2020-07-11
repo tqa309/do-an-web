@@ -18,7 +18,13 @@
 <link rel="stylesheet" href="<?php echo $server ?>/vendor/vanillatoasts/vanillatoasts.css">
     <!-- Custom styles for this template-->
     <link href="<?php echo $server ?>/css/sb-admin-2.min.css" rel="stylesheet">
-
+<style>
+    .bg-register-image {
+        background: url('../assets/dang-ky.jpg');
+        background-position: center;
+        background-size: cover;
+    }
+</style>
 </head>
 
 <body class="bg-gradient-primary">
