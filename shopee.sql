@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jul 11, 2020 at 03:05 PM
+-- Generation Time: Jul 11, 2020 at 03:14 PM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 
@@ -40,15 +40,16 @@ CREATE TABLE IF NOT EXISTS `bill` (
   `province` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `district` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `address` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `receiver` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`bill_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `bill`
 --
 
-INSERT INTO `bill` (`bill_id`, `user_id`, `date`, `status`, `pay`, `total`, `phone`, `province`, `district`, `address`) VALUES
-(14, 9, '2020-07-11 03:05:25', 'Tiếp nhận thành công', 'Chưa thanh toán', 48760000, '0123456789', 'Long An', 'Bến Lức', 'KTX Khu B, Tô Vĩnh Diện, Đông Hòa');
+INSERT INTO `bill` (`bill_id`, `user_id`, `date`, `status`, `pay`, `total`, `phone`, `province`, `district`, `address`, `receiver`) VALUES
+(15, 9, '2020-07-11 03:13:57', 'Tiếp nhận thành công', 'Chưa thanh toán', 30490000, '0987654321', 'Phú Yên', 'Tuy Hòa', 'KTX Khu B, Tô Vĩnh Diện, Đông Hòa', 'ĐàoTuấn Anh');
 
 -- --------------------------------------------------------
 
@@ -66,16 +67,14 @@ CREATE TABLE IF NOT EXISTS `bill_detail` (
   `total_price` double(10,2) NOT NULL,
   PRIMARY KEY (`bill_detail_id`),
   KEY `fk_ten1` (`item_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `bill_detail`
 --
 
 INSERT INTO `bill_detail` (`bill_detail_id`, `bill_id`, `item_id`, `quantity`, `price`, `total_price`) VALUES
-(8, 14, 2, 1, 7790000.00, 7790000.00),
-(9, 14, 7, 1, 14990000.00, 14990000.00),
-(10, 14, 8, 2, 12990000.00, 25980000.00);
+(11, 15, 12, 1, 30490000.00, 30490000.00);
 
 -- --------------------------------------------------------
 
@@ -90,7 +89,7 @@ CREATE TABLE IF NOT EXISTS `cart` (
   `item_id` int(11) NOT NULL,
   `quantity` int(3) NOT NULL DEFAULT 1,
   PRIMARY KEY (`cart_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
