@@ -19,7 +19,7 @@ include "$path/common/header.php" ?>
             <div class="form-group">
             <label>Chọn bộ lọc</label>
             <select name="type_filter" id="type_filter">
-              <option value="Tất cả">Tất cả</option>
+              <option value="Tổng doanh thu">Tổng doanh thu</option>
               <option value="Theo loại điện thoại">Theo loại điện thoại</option>
               <option value="Theo hãng điện thoại">Theo hãng điện thoại</option>
             </select>
