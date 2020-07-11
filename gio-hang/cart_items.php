@@ -26,7 +26,7 @@
           echo <<<EOF
             <div class="row border-top py-3 mt-3">
               <div class="col-xl-2 col-md-3">
-                  <img src="../$row[item_image]" style="height: 120px;" alt="cart1" class="img-fluid">
+              <a href="../chi-tiet-san-pham/?id=$row[item_id]"><img src="../$row[item_image]" style="height: 120px;" alt="cart1" class="img-fluid"></a>
               </div>
               <div class="col-xl-8 col-md-9">
                   <h5 class="font-baloo font-size-20">$row[item_name]</h5>
@@ -84,7 +84,7 @@
           echo <<<EOF
             <div class="row border-top py-3 mt-3">
               <div class="col-xl-2 col-md-3">
-                  <img src="../$row[item_image]" style="height: 120px;" alt="cart1" class="img-fluid">
+              <a href="../chi-tiet-san-pham/?id=$row[item_id]"><img src="../$row[item_image]" style="height: 120px;" alt="cart1" class="img-fluid"></a>
               </div>
               <div class="col-xl-8 col-md-9">
                   <h5 class="font-baloo font-size-20">$row[item_name]</h5>

@@ -50,7 +50,7 @@ while ($row = $result->fetch_assoc()) {
     <div class="col-lg-3 col-md-4 col-sm-6">
         <div class="item py-2" style="margin: auto; max-width: 250px;margin-bottom:20px;margin-top:0px; ">
         <div class="product font-rale ">
-            <a href="../chi-tiet-san-pham/?id=1"><img class="img-fluid " style="transform: scale(1);" onmouseover="this.style='transform:scale(1.15,1.15)'" onmouseout="this.style='transform:scale(1,1)'" alt="$row[item_name]" src="../$row[item_image]"></a>
+            <a href="../chi-tiet-san-pham/?id=$row[item_id]"><img class="img-fluid " style="transform: scale(1);" onmouseover="this.style='transform:scale(1.15,1.15)'" onmouseout="this.style='transform:scale(1,1)'" alt="$row[item_name]" src="../$row[item_image]"></a>
             <div class="text-center ">
             <h6 style="margin-top: 25px;">$row[item_name]</h6>
             <div class="rating text-warning font-size-12">
