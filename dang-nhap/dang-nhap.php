@@ -20,6 +20,11 @@
       margin-left: 10px; 
       font-size: 0.9em; 
     }
+    .bg-login-image {
+      background: url('../assets/dang-nhap.jpg');
+      background-position: center;
+      background-size: cover;
+    }
   </style>
 
 </head>

@@ -56,5 +56,16 @@
 
 <!-- Custom Javascript -->
 <script src="index.js"></script>
-
+<script type="text/javascript">
+    $(document).ready(function () {
+        var url = window.location;
+        var hrefArray = url.href.split('/');
+        var path = '../' + hrefArray[hrefArray.length - 2];
+        console.log(path);
+        $('ul.nav a[href="'+ path +'"]').parent().addClass('active');
+        $('ul.nav a').filter(function() {
+             return this.href == path;
+        }).parent().addClass('active');
+    });
+</script> 
 </body></html>

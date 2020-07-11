@@ -1,25 +1,4 @@
-$(document).ready(function() {
-  $(".owl-carousel").owlCarousel({
-    loop: false,
-    dots: false,
-    responsive : {
-        0: {
-            items: 2,
-            nav: false
-        },
-        600: {
-            items: 3,
-            nav: true
-        },
-        1000 : {
-            items: 5,
-            nav: true
-        }
-    }
-  });
-})
-
-function addToCartReload(userId, itemId, quantity) {
+function addToCart(userId, itemId, quantity) {
     if (userId != null) {
         $.ajax({
         type: 'post',
@@ -35,7 +14,6 @@ function addToCartReload(userId, itemId, quantity) {
             $(function(){
                 alert("Sản phẩm đã được thêm vào giỏ");
             });
-            location.reload();
         }
         });
     }

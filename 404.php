@@ -36,14 +36,14 @@
       
 
         <!-- Begin Page Content --> 
-        <div class="container-fluid" style="padding:30% 0;">
+        <div class="container-fluid" style="padding: 15% 0 0;">
 
           <!-- 404 Error Text -->
           <div class="text-center">
             <div class="error mx-auto" data-text="404">404</div>
             <p class="lead text-gray-800 mb-5">Không tìm thấy trang</p>
             <p class="text-gray-500 mb-0">Vui lòng quay về trang chủ</p>
-            <a href="index.html">&larr; Trở về trang chủ</a>
+            <a href="./trang-chu">&larr; Trở về trang chủ</a>
           </div>
 
         </div>

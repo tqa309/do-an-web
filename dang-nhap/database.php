@@ -33,6 +33,7 @@
       $_SESSION["username"] = $row["username"];
       $_SESSION["userType"] = $row["user_type"];
       $_SESSION["userId"] = $row["user_id"];
+      $_SESSION["expire"] = time() + 86400 * 30;
       return true;
     }
   }

@@ -2,17 +2,13 @@
 
   function getMemberById($memberId)
   {
-    $host = 'localhost:3306';
-    $dbname = 'shopee';
-    $user = 'root';
-    $pass = '';
-
-    $conn = new PDO("mysql:host=$host; dbname=$dbname", $user, $pass, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-    $query = "select * FROM user WHERE user_id = :userId";
-    $memberResult = $conn->prepare($query);
-    $memberResult->execute(array(
-      ':userId' => $memberId
-    ));
-    $row = $memberResult->fetch(PDO::FETCH_ASSOC);
+    require_once('database_mysqli.php');
+    $query = "select * FROM user WHERE user_id = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('d', $userId);
+    $userId = $conn->real_escape_string($memberId);
+    $stmt->execute();
+    $res = $stmt->get_result();
+    $row = $res->fetch_assoc();
     return $row;
   }

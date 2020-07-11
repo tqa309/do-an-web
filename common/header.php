@@ -4,24 +4,84 @@
             session_start();
         }
         if (!empty($_SESSION["userId"])) {
-            require_once 'session.php';
-            $memberResult = getMemberById($_SESSION["userId"]);
-            if(!empty($memberResult["last_name"])) {
-                $displayName = utf8_decode($memberResult["last_name"]);
-            } else {
-                $displayName = $memberResult["username"];
+            if (isset($_COOKIE['user'])) {
+                $cart = unserialize($_COOKIE['user']);
+                $itemArray = array_column($cart, 'itemId');
+                $quantityArray = array_column($cart, 'quantity');
+                for ($i = 0; $i < count($itemArray); $i++) {
+                    $sql = "SELECT * FROM cart WHERE user_id = :userId AND item_id = :itemId";
+                        $stmt = $GLOBALS['conn']->prepare($sql);
+                        $stmt->execute(array(
+                            ':userId' => $_SESSION["userId"],
+                            ':itemId' => $itemArray[$i]
+                        ));
+                        $res = $stmt->fetch(PDO::FETCH_ASSOC);
+                        if (!empty($res)) {
+                            $sql = "UPDATE cart SET quantity = :quantity WHERE user_id = :userId AND item_id = :itemId";
+                            $stmt = $GLOBALS['conn']->prepare($sql);
+                            $stmt->execute(array(
+                                ':userId' => $_SESSION["userId"],
+                                ':itemId' => $itemArray[$i],
+                                ':quantity' => intval($quantityArray[$i]) + intval($res['quantity'])
+                            ));
+                            $sql = "DELETE FROM cart WHERE quantity = 0";
+                            $stmt = $GLOBALS['conn']->prepare($sql);
+                            $stmt->execute();
+                        }
+                        else {
+                            $sql = "INSERT INTO cart (user_id, item_id, quantity) VALUES (:userId, :itemId, :quantity)";
+                            $stmt = $GLOBALS['conn']->prepare($sql);
+                            $stmt->execute(array(
+                            ':userId' => $_SESSION["userId"],
+                            ':itemId' => $itemArray[$i],
+                            ':quantity' => $quantityArray[$i]
+                            ));
+                        }
+                }
             }
+            setcookie('user', "", time() - 1000, '/', null);
+            if (time() < $_SESSION["expire"]) {
+                require_once 'session.php';
+                $memberResult = getMemberById($_SESSION["userId"]);
+                if(!empty($memberResult["last_name"])) {
+                    $displayName = $memberResult["last_name"];
+                } else {
+                    $displayName = $memberResult["username"];
+                }
 
-            echo <<<EOF
-                <span class="px-3 border-right border-left"><a href="../tai-khoan" class="text-dark"><i class="fa fa-user" aria-hidden="true"></i> $displayName</a> | <a href="../dang-xuat" class="text-dark">Đăng xuất</a><span>
-            EOF;
+                if ($_SESSION['userType'] == 1) {
+                    echo <<<EOF
+                        <span class="px-3 border-right border-left"><a href="../tai-khoan" class="text-dark"><i class="fa fa-user" aria-hidden="true"></i> $displayName</a> | <a href="../admin" class="text-dark">Quản lý</a> | <a href="../dang-xuat" class="text-dark">Đăng xuất</a><span>
+                    EOF;
+                } else {
+                    echo <<<EOF
+                        <span class="px-3 border-right border-left"><a href="../tai-khoan" class="text-dark"><i class="fa fa-user" aria-hidden="true"></i> $displayName</a> | <a href="../dang-xuat" class="text-dark">Đăng xuất</a><span>
+                    EOF;
+                }
+            } else {
+                $_SESSION["userId"] = "";
+                $_SESSION["userType"] = "";
+                $_SESSION["username"] = "";
+                session_destroy();
+                echo '<a href="../dang-nhap" class="px-3 border-right border-left text-dark">Đăng nhập</a><a href="../dang-ky" class="px-3 border-right border-left text-dark">Đăng ký</a><span>';
+                if (!isset($_COOKIE['user'])) {
+                    $cart = array();
+                    setcookie('user', serialize($cart), time() + 86400 * 14, '/', null);
+                }
+            }
           }
           else {
-              echo '<a href="../dang-nhap" class="px-3 border-right border-left text-dark">Đăng nhập</a><a href="../dang-ky" class="px-3 border-right border-left text-dark">Đăng ký</a><span>';
+            if (!isset($_COOKIE['user'])) {
+                $cart = array();
+                setcookie('user', serialize($cart), time() + 86400 * 14, '/', null);
+            }
+            echo '<a href="../dang-nhap" class="px-3 border-right border-left text-dark">Đăng nhập</a><a href="../dang-ky" class="px-3 border-right border-left text-dark">Đăng ký</a><span>';
           }
     }
     ?>
+<?php
 
+?>
 
 <html>
 <head>
@@ -44,7 +104,11 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <!-- Custom CSS file -->
     <link rel="stylesheet" href="style.css">
+<style>
+.navbar-dark .navbar-nav .nav-link:focus, .navbar-dark .navbar-nav .nav-link:hover{color:rgba(255, 255, 255, 0.9);}
+.navbar-dark .navbar-nav .nav-link{color:rgba(255, 255, 255, 0.75);}
 
+</style>
 </head>
 <body data-gr-c-s-loaded="true">
 
@@ -67,7 +131,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav m-auto font-rubik" style="margin-left: 5">
+            <ul class="nav navbar-nav m-auto font-rubik" style="margin-left: 5">
                 <li class="nav-item">
                     <a class="nav-link" href="../trang-chu">Trang chủ</a>
                 </li>
@@ -90,7 +154,32 @@
             <form action="../gio-hang" class="font-size-14 font-rale" style="position:relative; top: 8px;">
                 <a href="../gio-hang" class="py-2 rounded-pill color-primary-bg">
                     <span class="font-size-16 px-2 text-white"><i class="fas fa-shopping-cart"></i></span>
-                    <span class="px-3 py-2 rounded-pill text-dark bg-light">2</span>
+                    <span id="totalItems" class="px-3 py-2 rounded-pill text-dark bg-light">
+                        <?php
+                            require_once 'database_pdo.php';
+                            
+                            if (isset($_SESSION['userId'])) {
+                                $sql = "SELECT SUM(quantity) AS total FROM cart WHERE user_id = :userId";
+                                $stmt = $conn->prepare($sql);
+                                $stmt->execute(array(
+                                    ':userId' => $_SESSION['userId'],
+                                ));
+                                $res = $stmt->fetch(PDO::FETCH_ASSOC);
+                                if ($res['total'] != '') {
+                                    echo $res['total'];
+                                } else {
+                                    echo '0';
+                                }
+                            } else {
+                                if (isset($_COOKIE['user'])) {
+                                    $cart = unserialize($_COOKIE['user']);
+                                    echo array_sum(array_column($cart, 'quantity'));
+                                } else {
+                                    echo '0';
+                                }
+                            }
+                        ?>
+                    </span>
                 </a>
             </form>
         </div>
