@@ -1,3 +1,3 @@
 <?php
-  header("Location: ./quan-li-san-pham");
+  header("Location: ./quan-ly-san-pham");
 ?>

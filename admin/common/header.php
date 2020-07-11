@@ -55,7 +55,7 @@ if ($usertype!=1) {
 
             <!-- Nav Item - ManageProduct-->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="<?php echo $server ?>/quan-li-san-pham/">
+                <a class="nav-link collapsed" href="<?php echo $server ?>/quan-ly-san-pham/">
                     <i class="fas fa-fw fa-tasks"></i>
                     <span>Quản lý sản phẩm</span>
                 </a>
@@ -79,14 +79,14 @@ if ($usertype!=1) {
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="<?php echo $server ?>/invoice_revenue/">
+                <a class="nav-link" href="<?php echo $server ?>/quan-ly-hoa-don/">
                     <i class="fas fa-fw fa-money-bill"></i>
                     <span>Hóa đơn</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="<?php echo $server ?>/report_revenue/">
+                <a class="nav-link" href="<?php echo $server ?>/bao-cao-doanh-thu/">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Báo cáo doanh thu</span></a>
             </li>
