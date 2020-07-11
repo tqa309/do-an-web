@@ -22,8 +22,8 @@
                     <div class="row">
                         <div class=" col-lg-6" id="SP_img"><img class="img-fluid" style="transform: scale(1);" onmouseover="this.style='transform:scale(0.95,0.95)'" onmouseout="this.style='transform:scale(1,1)'" alt="$row[item_name]" src="../$row[item_image]"></div>
                         <div class=" col-lg-6 py-5" id="SP_P">
-                            <h1 class="font-baloo">Samsung Galaxy Fold </h1>
-                            <small style="font-size:12px; font-style:italic"> by Samsung</small>
+                            <h1 class="font-baloo">$row[item_name]</h1>
+                            <small style="font-size:12px; font-style:italic"> by $row[item_brand]</small>
                             <hr class="m-0">
                             <div class="row" style="margin-top:20px">
                                 <div class="col-6 col-lg-5 font-rale" style="font-size:16px;"> Giá gốc: </div>
@@ -35,15 +35,15 @@
                                 <div class="d-flex">
                                     <div class="return text-center" style="margin-right: 3.5rem !important;">
                                         <div class="font-size-20 my-2 color-second"><span class="fas fa-retweet border p-3 rounded-pill"></span></div>
-                                        <a class="font-rale font-size-16" href="#">10 ngày <br> đổi trả</a>
+                                        <span class="font-rale font-size-14" style="color:blue">10 ngày <br> đổi trả</span>
                                     </div>
                                     <div class="return text-center " style="margin-right: 3.5rem !important;">
                                         <div class="font-size-20 my-2 color-second"><span class="fas fa-truck  border p-3 rounded-pill"></span></div>
-                                        <a class="font-rale font-size-16" href="#">Giao hàng <br>tận nơi</a> 
+                                        <span class="font-rale font-size-14" style="color:blue">Giao hàng <br>tận nơi</span> 
                                     </div>
                                     <div class="return text-center" style="margin-right: 3.5rem !important;">
                                         <div class="font-size-20 my-2 color-second"><span class="fas fa-check-double border p-3 rounded-pill"></span></div>
-                                        <a class="font-rale font-size-16" href="#">Bảo hành <br>1 năm</a>
+                                        <span class="font-rale font-size-14" style="color:blue" >Bảo hành <br>1 năm</span>
                                     </div>
                                 </div>
                             </div>
