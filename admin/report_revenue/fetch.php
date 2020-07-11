@@ -53,7 +53,7 @@ if ($_POST["type_filter"]=="Theo hãng điện thoại")
     echo"</tbody>";
 }
 else
-if ($_POST["type_filter"]=="Tất cả")
+if ($_POST["type_filter"]=="Tổng doanh thu")
 {
     $sql = "SELECT SUM(bd.total_price) as doanhthu  
         FROM bill,bill_detail bd
