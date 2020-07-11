@@ -42,20 +42,20 @@ if (isset($_POST['userId']) && isset($_POST['itemId']) && isset($_POST['quantity
 else {
   if (!isset($_COOKIE['user'])) {
     $cart = array();
-    setcookie('user', serialize($cart), time() + 30, '/', null);
+    setcookie('user', serialize($cart), time() + 86400 * 14, '/', null);
   }
   $cart = unserialize($_COOKIE['user']);
   $key = array_search($_POST['itemId'], array_column($cart, 'itemId'));
   if ($key !== FALSE) {
     $cart[$key]['quantity'] += intval($_POST['quantity']);
     if ($cart[$key]['quantity'] == 0) unset($cart[$key]);
-    setcookie('user', serialize($cart), time() + 30, '/', null);
+    setcookie('user', serialize($cart), time() + 86400 * 14, '/', null);
   } else {
     $cart[] = array(
       'itemId' => $_POST['itemId'],
       'quantity' => intval($_POST['quantity'])
     );
-    setcookie('user', serialize($cart), time() + 30, '/', null);
+    setcookie('user', serialize($cart), time() + 86400 * 14, '/', null);
   }
   
   echo array_sum(array_column($cart, 'quantity'));

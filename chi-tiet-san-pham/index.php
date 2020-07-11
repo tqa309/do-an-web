@@ -43,8 +43,12 @@ $url .= $_SERVER['HTTP_HOST'];
 $url .= $_SERVER['REQUEST_URI'];
 //echo $url;
 $url_components = parse_url($url);
-parse_str($url_components['query'], $params);
-$item_id = $params['id'];
+if (isset($url_components['query'])) {
+    parse_str($url_components['query'], $params);
+}
+if (isset($params['id'])) {
+    $item_id = $params['id'];
+}
 ?>
     <section id="product" class=" py-5">
     </section>
@@ -98,7 +102,7 @@ $(".owl-carousel").owlCarousel({
     dots: false,
     responsive : {
         0: {
-            items: 1,
+            items: 2,
             nav: false
         },
         600: {

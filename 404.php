@@ -43,7 +43,7 @@
             <div class="error mx-auto" data-text="404">404</div>
             <p class="lead text-gray-800 mb-5">Không tìm thấy trang</p>
             <p class="text-gray-500 mb-0">Vui lòng quay về trang chủ</p>
-            <a href="index.html">&larr; Trở về trang chủ</a>
+            <a href="./trang-chu">&larr; Trở về trang chủ</a>
           </div>
 
         </div>

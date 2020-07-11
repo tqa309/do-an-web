@@ -49,9 +49,15 @@
                     $displayName = $memberResult["username"];
                 }
 
-                echo <<<EOF
-                    <span class="px-3 border-right border-left"><a href="../tai-khoan" class="text-dark"><i class="fa fa-user" aria-hidden="true"></i> $displayName</a> | <a href="../dang-xuat" class="text-dark">Đăng xuất</a><span>
-                EOF;
+                if ($_SESSION['userType'] == 1) {
+                    echo <<<EOF
+                        <span class="px-3 border-right border-left"><a href="../tai-khoan" class="text-dark"><i class="fa fa-user" aria-hidden="true"></i> $displayName</a> | <a href="../admin" class="text-dark">Quản lý</a> | <a href="../dang-xuat" class="text-dark">Đăng xuất</a><span>
+                    EOF;
+                } else {
+                    echo <<<EOF
+                        <span class="px-3 border-right border-left"><a href="../tai-khoan" class="text-dark"><i class="fa fa-user" aria-hidden="true"></i> $displayName</a> | <a href="../dang-xuat" class="text-dark">Đăng xuất</a><span>
+                    EOF;
+                }
             } else {
                 $_SESSION["userId"] = "";
                 $_SESSION["userType"] = "";
@@ -60,14 +66,14 @@
                 echo '<a href="../dang-nhap" class="px-3 border-right border-left text-dark">Đăng nhập</a><a href="../dang-ky" class="px-3 border-right border-left text-dark">Đăng ký</a><span>';
                 if (!isset($_COOKIE['user'])) {
                     $cart = array();
-                    setcookie('user', serialize($cart), time() + 30, '/', null);
+                    setcookie('user', serialize($cart), time() + 86400 * 14, '/', null);
                 }
             }
           }
           else {
             if (!isset($_COOKIE['user'])) {
                 $cart = array();
-                setcookie('user', serialize($cart), time() + 30, '/', null);
+                setcookie('user', serialize($cart), time() + 86400 * 14, '/', null);
             }
             echo '<a href="../dang-nhap" class="px-3 border-right border-left text-dark">Đăng nhập</a><a href="../dang-ky" class="px-3 border-right border-left text-dark">Đăng ký</a><span>';
           }
