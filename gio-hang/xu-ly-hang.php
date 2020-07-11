@@ -48,7 +48,7 @@ else {
   $key = array_search($_POST['itemId'], array_column($cart, 'itemId'));
   if ($key !== FALSE) {
     $cart[$key]['quantity'] += intval($_POST['quantity']);
-    if ($cart[$key]['quantity'] == 0) unset($cart[$key]);
+    if ($cart[$key]['quantity'] <= 0) unset($cart[$key]);
     setcookie('user', serialize($cart), time() + 86400 * 14, '/', null);
   } else {
     $cart[] = array(
