@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jul 11, 2020 at 08:01 AM
+-- Generation Time: Jul 11, 2020 at 02:11 PM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 
@@ -36,6 +36,10 @@ CREATE TABLE IF NOT EXISTS `bill` (
   `status` text COLLATE utf8_unicode_ci DEFAULT NULL,
   `pay` text COLLATE utf8_unicode_ci DEFAULT NULL,
   `total` int(11) NOT NULL,
+  `phone` char(11) COLLATE utf8_unicode_ci NOT NULL,
+  `province` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `district` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `address` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`bill_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -70,7 +74,14 @@ CREATE TABLE IF NOT EXISTS `cart` (
   `item_id` int(11) NOT NULL,
   `quantity` int(3) NOT NULL DEFAULT 1,
   PRIMARY KEY (`cart_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`cart_id`, `user_id`, `item_id`, `quantity`) VALUES
+(58, 9, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -189,7 +200,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 INSERT INTO `user` (`user_id`, `user_type`, `username`, `password`, `email`, `first_name`, `last_name`, `address`, `register_date`) VALUES
 (1, 1, '123', '$2y$10$Z/4TYm3e/CMQNFmtlhPCmuN9fihj0l/OL7I3ouXuR4OAtKRm9aVMy', '123@gmail.com', 'Quoc Anh', 'Tran', 'KTX Khu B', NULL),
 (8, 1, 'admin', '$2y$10$aLuoxJ6.Dl3VrSnSIUxrjedmRB2RH9UMd8iC4HbsdF/.LC.P6dSK6', 'tuananh8423@gmail.com', 'Đào', 'Tuấn Anh', 'KTX Khu B', '2020-07-08 02:35:37'),
-(9, 0, 'tuananh8423', '$2y$10$sO3iT27SH3ehj6Htq3lAl.UNHmgCzQkxFRXN17nQYB9.sbE8J/Ffy', 'tuananh18423@gmail.com', 'Tuấn Anh', 'Đào', 'KTX Khu B, Tô Vĩnh Diện, Đông Hòa, Dĩ An, Bình Dương', '2020-07-08 02:37:07');
+(9, 0, 'tuananh8423', '$2y$10$sO3iT27SH3ehj6Htq3lAl.UNHmgCzQkxFRXN17nQYB9.sbE8J/Ffy', 'tuananh18423@gmail.com', 'Tuấn Anh', 'Đào', 'KTX Khu B, Tô Vĩnh Diện, Đông Hòa', '2020-07-08 02:37:07');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
