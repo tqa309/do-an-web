@@ -1,17 +1,22 @@
 <?php
-include 'database.php';
+$host = 'localhost';
+$user = 'root';
+$password = '';
+$database = "tymobile";
+
+$conn = mysqli_connect($host, $user, $password, $database);
+if ($conn->connect_error){
+    echo "Fail " . $conn->connect_error;
+}
+mysqli_set_charset($conn, 'utf8');
 $sql = "SELECT `bill_id`,`receiver`,`phone`,`address`,`district`,`province`,`date`,`total`,`status`,`pay` FROM `bill`";
 $statement = $conn->prepare($sql);
 $statement->execute();
 
-$result=$statement->fetchAll();
-
-
-
-
+$result=$statement->get_result();
   // output data of each row
-  foreach($result as $row) {
-    echo '<tr id="'.$row["bill_id"].'"><td>' . $row["bill_id"]. "</td>" .
+  while($row = $result->fetch_assoc()) {
+    echo '<tr id="'.$row["bill_id"].'"><td>' . $row["bill_id"] . "</td>" .
     //"<td>".$row["user_id"]."</td>".
     "<td>".$row["receiver"]."</td>".
     "<td>".$row["phone"]."</td>".

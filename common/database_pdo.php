@@ -1,6 +1,6 @@
 <?php
   $host = 'localhost:3306';
-  $dbname = 'shopee';
+  $dbname = 'tymobile';
   $user = 'root';
   $pass = '';
 
