@@ -61,7 +61,7 @@ while ($row = $result->fetch_assoc()) {
                 <span><i class="far fa-star"></i></span>
             </div>
             <div class="price py-2 "><span style="font-size:20px;color:red;">$price đ</span></div>
-            <button type="submit" name="top_sale_submit" onclick="addToCart($userId, $row[item_id], 1)"class="btn btn-warning font-size-12">Add to Cart</button>
+            <button type="submit" name="top_sale_submit" onclick="addToCart($userId, $row[item_id], 1)"class="btn btn-warning font-size-12">Thêm vào giỏ</button>
             </div>
         </div>
         </div>
