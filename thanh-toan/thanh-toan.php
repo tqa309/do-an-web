@@ -29,80 +29,111 @@
         <div class="col-md-5 order-md-2 mb-4">
           <h4 class="d-flex justify-content-between align-items-center mb-3">
             <span class="text-muted">Giỏ hàng của bạn</span>
-            <span class="badge badge-secondary badge-pill">2</span>
-          </h4>
-          <ul class="list-group mb-3">
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <div>
-                <h6 class="my-0">iPhone 11 Pro Max 512GB</h6>
-              </div>
-              <span class="text-muted">39,990,000 đ</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <div>
-                <h6 class="my-0">Samsung Galaxy Note 10</h6>
-              </div>
-              <span class="text-muted">15,990,000 đ</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between">
-              <span>Tổng tiền (VNĐ)</span>
-              <strong>55,980,000 đ</strong>
-            </li>
+    
+            <?php
+              $sql = "SELECT * FROM cart c join product p on c.item_id = p.item_id WHERE user_id = ?";
+              $stmt = $conn->prepare($sql);
+              $stmt->bind_param('d', $_SESSION['userId']);
+              $stmt->execute();
+              $res = $stmt->get_result();
+              echo <<<EOF
+                <span class="badge badge-secondary badge-pill">$res->num_rows</span>
+              </h4>
+              <ul class="list-group mb-3">
+              EOF;
+              $sum = 0;
+              while ($row = $res->fetch_assoc()) {
+                $sum += intval($row['item_price'] * $row['quantity']);
+                $row['item_price'] = number_format(intval($row['item_price']) * intval($row['quantity']));
+                echo <<<EOF
+                  <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                      <img width="60" src="../$row[item_image]">
+                      <h6 class="my-0">$row[item_name] <small>(x$row[quantity])</small></h6>
+                    </div>
+                    <span class="text-muted">$row[item_price]đ</span>
+                  </li>
+                EOF;
+              }
+              $a = array();
+              $a['sum'] = ($sum >= 10000000) ? number_format($sum) : number_format($sum + 100000);
+              if ($sum >= 10000000) {
+                echo '<li class="list-group-item d-flex justify-content-between">
+                  <h6 class="font-size-12 font-rale text-success py-3"><i class="fas fa-check"></i>Đơn hàng trên 10 triệu được MIỄN PHÍ vận chuyển.</h6>
+                </li>';
+              } else {
+                echo '<li class="list-group-item d-flex justify-content-between">
+                  <span>Phí vận chuyển</span>
+                  <span class="text-muted">100,000đ</span>
+                </li>';
+              }
+              echo <<<EOF
+                <li class="list-group-item d-flex justify-content-between">
+                  <strong>Tổng tiền (VNĐ)</strong>
+                  <strong class="text-danger">$a[sum]đ</strong>
+                </li>
+              EOF;
+            ?>
+            
           </ul>
         </div>
         <div class="col-md-7 order-md-1">
           <h4 class="mb-3">Thông tin thanh toán</h4>
-          <form class="needs-validation" novalidate="">
+          <form action="lap-hoa-don.php" method="POST" class="needs-validation" novalidate="">
+            <?php
+              $sql = "SELECT * FROM user WHERE user_id = ?";
+              $stmt = $conn->prepare($sql);
+              $stmt->bind_param('d', $_SESSION['userId']);
+              $stmt->execute();
+              $res = $stmt->get_result();
+              $row = $res->fetch_assoc();
+              echo <<<EOF
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <label for="lastName">Họ *</label>
+                    <input type="text" class="form-control" id="lastName" name="lastName" placeholder="" value="$row[last_name]" required="">
+                    <div class="invalid-feedback">
+                      Họ là bắt buộc.
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <label for="firstName">Tên *</label>
+                    <input type="text" class="form-control" id="firstName" name="firstName" placeholder="" value="$row[first_name]" required="">
+                    <div class="invalid-feedback">
+                      Tên là bắt buộc.
+                    </div>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="phone">Số điện thoại *</label>
+                  <div class="input-group">
+                    <input type="number" class="form-control" id="phone" name="phone" placeholder="0987654321" required="">
+                    <div class="invalid-feedback" style="width: 100%;">
+                      Số điện thoại là bắt buộc.
+                    </div>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="email">Email *</label>
+                  <input type="email" class="form-control" value="$row[email]" name="email" id="email" placeholder="nguyenvana@example.com" required="">
+                  <div class="invalid-feedback">
+                    Vui lòng nhập địa chỉ Email hợp lệ.
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="address">Địa chỉ *</label>
+                  <input type="text" class="form-control" value="$row[address]" id="address" name="address" placeholder="Số 3, Khu phố 6, Phường Linh Trung" required="">
+                  <div class="invalid-feedback">
+                    Vui lòng nhập địa chỉ.
+                  </div>
+                </div>
+              EOF;
+            ?>
+
             <div class="row">
               <div class="col-md-6 mb-3">
-                <label for="lastName">Họ</label>
-                <input type="text" class="form-control" id="lastName" name="lastName" placeholder="" value="" required="">
-                <div class="invalid-feedback">
-                  Họ là bắt buộc.
-                </div>
-              </div>
-              <div class="col-md-6 mb-3">
-                <label for="firstName">Tên</label>
-                <input type="text" class="form-control" id="firstName" name="firstName" placeholder="" value="" required="">
-                <div class="invalid-feedback">
-                  Tên là bắt buộc.
-                </div>
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <label for="username">Tên đăng nhập</label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">@</span>
-                </div>
-                <input type="text" class="form-control" id="username" name="username" placeholder="" required="">
-                <div class="invalid-feedback" style="width: 100%;">
-                  Tên đăng nhập là bắt buộc.
-                </div>
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <label for="email">Email <span class="text-muted">(Tùy chọn)</span></label>
-              <input type="email" class="form-control" id="email" placeholder="nguyenvana@example.com">
-              <div class="invalid-feedback">
-                Vui lòng nhập địa chỉ Email hợp lệ.
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <label for="address">Địa chỉ</label>
-              <input type="text" class="form-control" id="address" placeholder="Số 3, Khu phố 6, Phường Linh Trung" required="">
-              <div class="invalid-feedback">
-                Vui lòng nhập địa chỉ.
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-md-5 mb-3">
-                <label for="city">Tỉnh / Thành phố</label>
-                <select class="custom-select d-block w-100" id="tinh" required="" name="tinh">
+                <label for="city">Tỉnh / Thành phố *</label>
+                <select class="custom-select d-block w-100" id="city" required="" name="city">
                   <option value="">Chọn...</option>
                   <option value="59">Thành phố Hồ Chí Minh</option>
                   <option value="60">Đồng Nai</option>
@@ -113,25 +144,20 @@
                   Vui lòng chọn tỉnh, thành hợp lệ.
                 </div>
               </div>
-              <div class="col-md-4 mb-3">
-                <label for="district">Quận / Huyện</label>
-                <select class="custom-select d-block w-100" id="state" required="">
+              <div class="col-md-6 mb-3">
+                <label for="district">Quận / Huyện *</label>
+                <select class="custom-select d-block w-100" id="district" name="district" required="">
                   <option value="">Chọn...</option>
                   <option value="quan1">Quận 1</option>
                   <option value="quan2">Quận 2</option>
                   <option value="quan3">Quận 3</option>
-                  <option value="quan4">Quận 4</option>
-                  <option value="quan5">Quận 5</option>
+                  <option value="di-an">Thị xã Dĩ An</option>
+                  <option value="quan5">Long Thành</option>
+                  <option value="quan5">Tân Trụ</option>
+                  <option value="quan5">Bến Lức</option>
                 </select>
                 <div class="invalid-feedback">
                   Vui lòng chọn quận, huyện hợp lệ.
-                </div>
-              </div>
-              <div class="col-md-3 mb-3">
-                <label for="zip">Mã Zip</label>
-                <input type="text" class="form-control" id="zip" placeholder="" required="">
-                <div class="invalid-feedback">
-                  Mã Zip là bắt buộc.
                 </div>
               </div>
             </div>
@@ -141,7 +167,7 @@
 
             <div class="d-block my-3">
               <div class="custom-control custom-radio">
-                <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked="" required="">
+                <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required="">
                 <label class="custom-control-label" for="credit">Thanh toán tiền mặt khi nhận hàng</label>
               </div>
             </div>
