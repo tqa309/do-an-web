@@ -56,7 +56,8 @@
                 EOF;
               }
               $a = array();
-              $a['sum'] = ($sum >= 10000000) ? number_format($sum) : number_format($sum + 100000);
+              $a['sum'] = ($sum >= 10000000) ? $sum : $sum + 100000;
+              $a['sum_num'] = number_format($a['sum']);
               if ($sum >= 10000000) {
                 echo '<li class="list-group-item d-flex justify-content-between">
                   <h6 class="font-size-12 font-rale text-success py-3"><i class="fas fa-check"></i>Đơn hàng trên 10 triệu được MIỄN PHÍ vận chuyển.</h6>
@@ -70,7 +71,7 @@
               echo <<<EOF
                 <li class="list-group-item d-flex justify-content-between">
                   <strong>Tổng tiền (VNĐ)</strong>
-                  <strong class="text-danger">$a[sum]đ</strong>
+                  <strong class="text-danger">$a[sum_num]đ</strong>
                 </li>
               EOF;
             ?>
@@ -91,6 +92,7 @@
                 <div class="row">
                   <div class="col-md-6 mb-3">
                     <label for="lastName">Họ *</label>
+                    <input type="hidden" value="$a[sum]" name="total">
                     <input type="text" class="form-control" id="lastName" name="lastName" placeholder="" value="$row[last_name]" required="">
                     <div class="invalid-feedback">
                       Họ là bắt buộc.
@@ -135,10 +137,11 @@
                 <label for="city">Tỉnh / Thành phố *</label>
                 <select class="custom-select d-block w-100" id="city" required="" name="city">
                   <option value="">Chọn...</option>
-                  <option value="59">Thành phố Hồ Chí Minh</option>
-                  <option value="60">Đồng Nai</option>
-                  <option value="61">Bình Dương</option>
-                  <option value="62">Long An</option>
+                  <option value="Hồ Chí Minh">Thành phố Hồ Chí Minh</option>
+                  <option value="Đồng Nai">Đồng Nai</option>
+                  <option value="Phú Yên">Phú Yên</option>
+                  <option value="Bình Dương">Bình Dương</option>
+                  <option value="Long An">Long An</option>
                 </select>
                 <div class="invalid-feedback">
                   Vui lòng chọn tỉnh, thành hợp lệ.
@@ -148,13 +151,14 @@
                 <label for="district">Quận / Huyện *</label>
                 <select class="custom-select d-block w-100" id="district" name="district" required="">
                   <option value="">Chọn...</option>
-                  <option value="quan1">Quận 1</option>
-                  <option value="quan2">Quận 2</option>
-                  <option value="quan3">Quận 3</option>
-                  <option value="di-an">Thị xã Dĩ An</option>
-                  <option value="quan5">Long Thành</option>
-                  <option value="quan5">Tân Trụ</option>
-                  <option value="quan5">Bến Lức</option>
+                  <option value="Quận 1">Quận 1</option>
+                  <option value="Quận 2">Quận 2</option>
+                  <option value="Quận 3">Quận 3</option>
+                  <option value="Thị xã Dĩ An">Thị xã Dĩ An</option>
+                  <option value="Long Thành">Long Thành</option>
+                  <option value="Tuy Hòa">Tuy Hòa</option>
+                  <option value="Bến Lức">Bến Lức</option>
+                  <option value="Tân Trụ">Tân Trụ</option>
                 </select>
                 <div class="invalid-feedback">
                   Vui lòng chọn quận, huyện hợp lệ.
