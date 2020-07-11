@@ -37,7 +37,7 @@ $sql .="WHERE `item_name` like '%".$key."%' or `item_brand` like '%".$key."%' " 
 $sql.=" LIMIT $start, 12";
 $result = $conn->query($sql);
 
-$userId = 'null';
+$userId = '-1';
 session_start();
 if (isset($_SESSION['userId'])) {
     $userId = $_SESSION['userId'];

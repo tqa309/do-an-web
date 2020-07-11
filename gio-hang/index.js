@@ -82,6 +82,11 @@ function addToCartReload(userId, itemId, quantity) {
             quantity: quantity
         },
         success: function(data) {
+            $('#totalItems').html(data);
+            console.log(data);
+            $(function(){
+                alert("Sản phẩm đã được thêm vào giỏ");
+            });
             location.reload();
         }
         });

@@ -25,7 +25,7 @@
       }
       $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-      $userId = 'null';
+      $userId = '-1';
       if (isset($_SESSION['userId'])) {
         $userId = $_SESSION['userId'];
       }

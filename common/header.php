@@ -3,7 +3,43 @@
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
-        if (!empty($_SESSION["userId"]) && time()) {
+        if (!empty($_SESSION["userId"])) {
+            if (isset($_COOKIE['user'])) {
+                $cart = unserialize($_COOKIE['user']);
+                $itemArray = array_column($cart, 'itemId');
+                $quantityArray = array_column($cart, 'quantity');
+                for ($i = 0; $i < count($itemArray); $i++) {
+                    $sql = "SELECT * FROM cart WHERE user_id = :userId AND item_id = :itemId";
+                        $stmt = $GLOBALS['conn']->prepare($sql);
+                        $stmt->execute(array(
+                            ':userId' => $_SESSION["userId"],
+                            ':itemId' => $itemArray[$i]
+                        ));
+                        $res = $stmt->fetch(PDO::FETCH_ASSOC);
+                        if (!empty($res)) {
+                            $sql = "UPDATE cart SET quantity = :quantity WHERE user_id = :userId AND item_id = :itemId";
+                            $stmt = $GLOBALS['conn']->prepare($sql);
+                            $stmt->execute(array(
+                                ':userId' => $_SESSION["userId"],
+                                ':itemId' => $itemArray[$i],
+                                ':quantity' => intval($quantityArray[$i]) + intval($res['quantity'])
+                            ));
+                            $sql = "DELETE FROM cart WHERE quantity = 0";
+                            $stmt = $GLOBALS['conn']->prepare($sql);
+                            $stmt->execute();
+                        }
+                        else {
+                            $sql = "INSERT INTO cart (user_id, item_id, quantity) VALUES (:userId, :itemId, :quantity)";
+                            $stmt = $GLOBALS['conn']->prepare($sql);
+                            $stmt->execute(array(
+                            ':userId' => $_SESSION["userId"],
+                            ':itemId' => $itemArray[$i],
+                            ':quantity' => $quantityArray[$i]
+                            ));
+                        }
+                }
+            }
+            setcookie('user', "", time() - 1000, '/', null);
             if (time() < $_SESSION["expire"]) {
                 require_once 'session.php';
                 $memberResult = getMemberById($_SESSION["userId"]);
@@ -16,8 +52,6 @@
                 echo <<<EOF
                     <span class="px-3 border-right border-left"><a href="../tai-khoan" class="text-dark"><i class="fa fa-user" aria-hidden="true"></i> $displayName</a> | <a href="../dang-xuat" class="text-dark">Đăng xuất</a><span>
                 EOF;
-
-                setcookie('user', "", time() - 1000);
             } else {
                 $_SESSION["userId"] = "";
                 $_SESSION["userType"] = "";
@@ -26,14 +60,14 @@
                 echo '<a href="../dang-nhap" class="px-3 border-right border-left text-dark">Đăng nhập</a><a href="../dang-ky" class="px-3 border-right border-left text-dark">Đăng ký</a><span>';
                 if (!isset($_COOKIE['user'])) {
                     $cart = array();
-                    setcookie('user', serialize($cart), time() + 1000);
+                    setcookie('user', serialize($cart), time() + 30, '/', null);
                 }
             }
           }
           else {
             if (!isset($_COOKIE['user'])) {
                 $cart = array();
-                setcookie('user', serialize($cart), time() + 1000);
+                setcookie('user', serialize($cart), time() + 30, '/', null);
             }
             echo '<a href="../dang-nhap" class="px-3 border-right border-left text-dark">Đăng nhập</a><a href="../dang-ky" class="px-3 border-right border-left text-dark">Đăng ký</a><span>';
           }
@@ -64,7 +98,11 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <!-- Custom CSS file -->
     <link rel="stylesheet" href="style.css">
+<style>
+.navbar-dark .navbar-nav .nav-link:focus, .navbar-dark .navbar-nav .nav-link:hover{color:rgba(255, 255, 255, 0.9);}
+.navbar-dark .navbar-nav .nav-link{color:rgba(255, 255, 255, 0.75);}
 
+</style>
 </head>
 <body data-gr-c-s-loaded="true">
 
@@ -127,7 +165,12 @@
                                     echo '0';
                                 }
                             } else {
-                                echo '0';
+                                if (isset($_COOKIE['user'])) {
+                                    $cart = unserialize($_COOKIE['user']);
+                                    echo array_sum(array_column($cart, 'quantity'));
+                                } else {
+                                    echo '0';
+                                }
                             }
                         ?>
                     </span>
