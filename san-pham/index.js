@@ -106,8 +106,7 @@ $(document).ready(function() {
     if (key == null) { key = ""; };
     page = Number(page) - 1;
     returnproduct(key, page);
-    pagelist();
-
+    // pagelist();
 });
 
 $('#s-btn').click(function() {
@@ -117,7 +116,7 @@ $('#s-btn').click(function() {
     const url = './?key=' + key;
     history.pushState(state, title, url)
     returnproduct(key, 0);
-    pagelist();
+    // pagelist();
 });
 
 function page(i) {
@@ -141,7 +140,7 @@ function page(i) {
     page = Number(page) - 1;
     if (key == null) { key = ""; };
     returnproduct(key, page);
-    pagelist();
+    // pagelist();
 }
 
 function pagelist() {
@@ -211,24 +210,25 @@ function returnProduct(key, page) {
         url: 'ProductList.php',
         dataType: 'json',
         success: function(response) {
-            var html = "";
-            if (response.length == 0) {
-                html += `<span style = "margin: auto;">Không có Sản phẩm phù hợp</span>`;
-            } else {
-                for (value of response) {
-                    let price = Number(value.Price).toLocaleString('de-DE', {
-                        style: 'currency',
-                        currency: 'VND',
-                    });
-                    html += `<div class="col-lg-3 col-md-4 col-sm-6" >`;
-                    html += '<div class = "item py-2" style = "margin: auto; max-width: 250px;margin-bottom:20px;margin-top:0px; ">';
-                    html += '<div class = "product font-rale ">';
-                    html += `<a href="../chi-tiet-san-pham/?id=${value.ID}"><img src="../${value.img} " alt="${value.Name}" class="img-fluid " onMouseOver="this.style='transform:scale(1.15,1.15)'" onMouseOut="this.style='transform:scale(1,1)'"></a>`;
-                    html += `<div class="text-center " > <h6 style="margin-top: 25px;">${value.Name}</h6>`;
-                    html += `<div class="price py-2 "><span style="font-size:20px;color:red;">${price}</span></div><button name="top_sale_submit" class="btn btn-warning font-size-12" type="submit">Add to Cart</button></div> </div> </div></div>`;
-                }
-            }
-            $('#ProductList').html(html);
+            // var html = "";
+            // if (response.length == 0) {
+            //     html += `<span style = "margin: auto;">Không có Sản phẩm phù hợp</span>`;
+            // } else {
+            //     for (value of response) {
+            //         let price = Number(value.Price).toLocaleString('de-DE', {
+            //             style: 'currency',
+            //             currency: 'VND',
+            //         });
+            //         html += `<div class="col-lg-3 col-md-4 col-sm-6" >`;
+            //         html += '<div class = "item py-2" style = "margin: auto; max-width: 250px;margin-bottom:20px;margin-top:0px; ">';
+            //         html += '<div class = "product font-rale ">';
+            //         html += `<a href="../chi-tiet-san-pham/?id=${value.ID}"><img src="../${value.img} " alt="${value.Name}" class="img-fluid " onMouseOver="this.style='transform:scale(1.15,1.15)'" onMouseOut="this.style='transform:scale(1,1)'"></a>`;
+            //         html += `<div class="text-center " > <h6 style="margin-top: 25px;">${value.Name}</h6>`;
+            //         html += `<div class="price py-2 "><span style="font-size:20px;color:red;">${price}</span></div><button name="top_sale_submit" class="btn btn-warning font-size-12" type="submit">Add to Cart</button></div> </div> </div></div>`;
+            //     }
+            // }
+            // $('#ProductList').html(html);
+            render(response);
         }
     })
     pagelist();
