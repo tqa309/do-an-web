@@ -1,6 +1,6 @@
 <?php
 include 'database.php';
-$sql = "SELECT `bill_id`,`first_name`,`last_name`,`date`,`total`,`status`,`pay` FROM `bill`,`user` WHERE bill.user_id=user.user_id";
+$sql = "SELECT `bill_id`,`receiver`,`phone`,`address`,`district`,`province`,`date`,`total`,`status`,`pay` FROM `bill`";
 $statement = $conn->prepare($sql);
 $statement->execute();
 
@@ -13,7 +13,9 @@ $result=$statement->fetchAll();
   foreach($result as $row) {
     echo '<tr id="'.$row["bill_id"].'"><td>' . $row["bill_id"]. "</td>" .
     //"<td>".$row["user_id"]."</td>".
-    "<td>".$row["first_name"]." ".$row["last_name"]."</td>".
+    "<td>".$row["receiver"]."</td>".
+    "<td>".$row["phone"]."</td>".
+    "<td>".$row["address"]." ".$row["district"]." ".$row["province"]."</td>".
     "<td>".$row["date"]."</td>".
     "<td>".$row["status"]."</td>".
     "<td>".$row["pay"]."</td>".

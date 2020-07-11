@@ -23,6 +23,8 @@ include "$path/common/header.php" ?>
                     <tr>
                       <th>Mã Hóa Đơn</th>
                       <th>Tên Người Thanh Toán</th>
+                      <th>Điện thoại</th>
+                      <th>Địa chỉ</th>
                       <th>Ngày Thanh Toán</th>
                       <th>Vận Chuyển</th>
                       <th>Tình Trạng Thanh Toán</th>
