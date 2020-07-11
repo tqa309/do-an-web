@@ -1,24 +1,20 @@
 <?php
   include('../common/header.php');
-
-  $host = 'localhost:3306';
-  $dbname = 'shopee';
-  $user = 'root';
-  $pass = '';
-
-  $conn = new PDO("mysql:host=$host; dbname=$dbname", $user, $pass, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-  $query = "select * FROM user WHERE user_id = :userId";
+  include('../common/database_mysqli.php');
+  
+  $query = "select * FROM user WHERE user_id = ?";
   $memberResult = $conn->prepare($query);
-  $memberResult->execute(array(
-    ':userId' => $_SESSION["userId"]
-  ));
-  $row = $memberResult->fetch(PDO::FETCH_ASSOC);
+  $memberResult->bind_param('d', $_SESSION['userId']);
+  $memberResult->execute();
+  $result = $memberResult->get_result();
+  $row = $result->fetch_assoc();
+  $conn->close();
 
   echo <<<EOF
     <main id="main-site">
       <div class="container-fluid mb-5">
         <h1 class="h3 mb-2 text-gray-800 text-center">Thông tin tài khoản</h1>
-        <form action="" method="POST" role="form" accept-charset="utf-8">
+        <form id="userInfo" role="form" accept-charset="utf-8">
           <div class="container">
             <div class="form-group">
                 <label for="username">Tên đăng nhập</label>
@@ -40,7 +36,7 @@
               <label for="address">Địa chỉ</label>
               <input class="form-control" id="address" name="address" value="$row[address]">
             </div>
-            <button type="button" id="submit" class="btn btn-primary mt-2">Cập nhật thông tin</button>
+            <button type="submit" id="submit" class="btn btn-primary mt-2">Cập nhật thông tin</button>
         </form>
       </div>
     </main>

@@ -3,25 +3,45 @@
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
-        if (!empty($_SESSION["userId"])) {
-            require_once 'session.php';
-            $memberResult = getMemberById($_SESSION["userId"]);
-            if(!empty($memberResult["last_name"])) {
-                $displayName = utf8_decode($memberResult["last_name"]);
-            } else {
-                $displayName = $memberResult["username"];
-            }
+        if (!empty($_SESSION["userId"]) && time()) {
+            if (time() < $_SESSION["expire"]) {
+                require_once 'session.php';
+                $memberResult = getMemberById($_SESSION["userId"]);
+                if(!empty($memberResult["last_name"])) {
+                    $displayName = $memberResult["last_name"];
+                } else {
+                    $displayName = $memberResult["username"];
+                }
 
-            echo <<<EOF
-                <span class="px-3 border-right border-left"><a href="../tai-khoan" class="text-dark"><i class="fa fa-user" aria-hidden="true"></i> $displayName</a> | <a href="../dang-xuat" class="text-dark">Đăng xuất</a><span>
-            EOF;
+                echo <<<EOF
+                    <span class="px-3 border-right border-left"><a href="../tai-khoan" class="text-dark"><i class="fa fa-user" aria-hidden="true"></i> $displayName</a> | <a href="../dang-xuat" class="text-dark">Đăng xuất</a><span>
+                EOF;
+
+                setcookie('user', "", time() - 1000);
+            } else {
+                $_SESSION["userId"] = "";
+                $_SESSION["userType"] = "";
+                $_SESSION["username"] = "";
+                session_destroy();
+                echo '<a href="../dang-nhap" class="px-3 border-right border-left text-dark">Đăng nhập</a><a href="../dang-ky" class="px-3 border-right border-left text-dark">Đăng ký</a><span>';
+                if (!isset($_COOKIE['user'])) {
+                    $cart = array();
+                    setcookie('user', serialize($cart), time() + 1000);
+                }
+            }
           }
           else {
-              echo '<a href="../dang-nhap" class="px-3 border-right border-left text-dark">Đăng nhập</a><a href="../dang-ky" class="px-3 border-right border-left text-dark">Đăng ký</a><span>';
+            if (!isset($_COOKIE['user'])) {
+                $cart = array();
+                setcookie('user', serialize($cart), time() + 1000);
+            }
+            echo '<a href="../dang-nhap" class="px-3 border-right border-left text-dark">Đăng nhập</a><a href="../dang-ky" class="px-3 border-right border-left text-dark">Đăng ký</a><span>';
           }
     }
     ?>
+<?php
 
+?>
 
 <html>
 <head>
@@ -90,7 +110,27 @@
             <form action="../gio-hang" class="font-size-14 font-rale" style="position:relative; top: 8px;">
                 <a href="../gio-hang" class="py-2 rounded-pill color-primary-bg">
                     <span class="font-size-16 px-2 text-white"><i class="fas fa-shopping-cart"></i></span>
-                    <span class="px-3 py-2 rounded-pill text-dark bg-light">2</span>
+                    <span id="totalItems" class="px-3 py-2 rounded-pill text-dark bg-light">
+                        <?php
+                            require_once 'database_pdo.php';
+                            
+                            if (isset($_SESSION['userId'])) {
+                                $sql = "SELECT SUM(quantity) AS total FROM cart WHERE user_id = :userId";
+                                $stmt = $conn->prepare($sql);
+                                $stmt->execute(array(
+                                    ':userId' => $_SESSION['userId'],
+                                ));
+                                $res = $stmt->fetch(PDO::FETCH_ASSOC);
+                                if ($res['total'] != '') {
+                                    echo $res['total'];
+                                } else {
+                                    echo '0';
+                                }
+                            } else {
+                                echo '1';
+                            }
+                        ?>
+                    </span>
                 </a>
             </form>
         </div>

@@ -1,5 +1,4 @@
 $(document).ready(function(){
-
   $("#banner-area .owl-carousel").owlCarousel({
       dots: true,
       items: 1
@@ -23,9 +22,21 @@ $(document).ready(function(){
           }
       }
   });
-
-  $(".button-group").on("click", "button", function(){
-      var filterValue = $(this).attr('data-filter');
-      $grid.isotope({ filter: filterValue});
-  })
 });
+
+function addToCart(userId, itemId, quantity) {
+    if (userId != null) {
+        $.ajax({
+        type: 'post',
+        url: '../gio-hang/xu-ly-hang.php',
+        data: {
+            userId: userId,
+            itemId: itemId,
+            quantity: quantity
+        },
+        success: function(data) {
+            $('#totalItems').html(data);
+        }
+        });
+    }
+}

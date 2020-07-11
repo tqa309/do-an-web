@@ -25,6 +25,11 @@
       }
       $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+      $userId = 'null';
+      if (isset($_SESSION['userId'])) {
+        $userId = $_SESSION['userId'];
+      }
+
       foreach ($res as $row) {
         $price = number_format($row['item_price']);
         echo <<<EOF
@@ -43,11 +48,7 @@
                     <div class="price py-2">
                         <span>$price đ</span>
                     </div>
-                    <form method="post">
-                        <input type="hidden" name="item_id" value="$row[item_id]">
-                        <input type="hidden" name="user_id" value="1">
-                        <button type="submit" name="top_sale_submit" class="btn btn-warning font-size-12">Add to Cart</button>
-                    </form>
+                    <button type="submit" name="top_sale_submit" onclick="addToCart($userId, $row[item_id], 1)"class="btn btn-warning font-size-12">Add to Cart</button>
                 </div>
             </div>
         </div></div>

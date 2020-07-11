@@ -70,3 +70,20 @@ $(document).ready(function() {
     }
   });
 })
+
+function addToCartReload(userId, itemId, quantity) {
+    if (userId != null) {
+        $.ajax({
+        type: 'post',
+        url: '../gio-hang/xu-ly-hang.php',
+        data: {
+            userId: userId,
+            itemId: itemId,
+            quantity: quantity
+        },
+        success: function(data) {
+            location.reload();
+        }
+        });
+    }
+}
