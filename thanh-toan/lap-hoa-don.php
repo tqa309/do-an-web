@@ -13,7 +13,7 @@
     $address = mysqli_real_escape_string($conn, $_POST['address']);
     $receiver = mysqli_real_escape_string($conn, $_POST['lastName']) . ' ' . mysqli_real_escape_string($conn, $_POST['firstName']);
     $pay = 'Chưa thanh toán';
-    $status = 'Tiếp nhận thành công';
+    $status = 'Chưa chuyển';
     $stmt->bind_param('dsssdsssss', $_SESSION['userId'], $date, $status, $pay, $total, $phone, $province, $district, $address, $receiver);
     $stmt->execute();
 
