@@ -10,6 +10,7 @@
         $row = $res->fetch_assoc();
 
         $userId = '-1';
+        session_start();        
         if (isset($_SESSION['userId'])) {
             $userId = $_SESSION['userId'];
         }

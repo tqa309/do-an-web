@@ -151,7 +151,7 @@
         echo <<<EOF
                 <div class="py-4">
                     <h5 class="font-baloo font-size-20">Tổng đơn hàng ($i sản phẩm):&nbsp; <span class="text-danger"><span class="text-danger" id="deal-price">$money đ</span> </span> </h5>
-                    <button type="submit" class="btn btn-warning mt-3">Tiến hành đặt hàng</button>
+                    <a href="../thanh-toan" role="button" type="submit" class="btn btn-success text-white mt-3">Tiến hành đặt hàng</a>
                 </div>
             </div>
           </div>
