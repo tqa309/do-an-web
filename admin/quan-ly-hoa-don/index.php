@@ -50,9 +50,7 @@ include "$path/common/header.php" ?>
                 <div class="modal-header">
                 <h3 id="modal_title_detail"></h3>
 
-                <button id ="remove_detail" class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
+                
                 </div>
                 <div class="modal-body">
                 <div class="table-responsive">
