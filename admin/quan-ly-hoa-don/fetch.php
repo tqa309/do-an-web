@@ -24,7 +24,7 @@ $result=$statement->get_result();
     "<td>".$row["date"]."</td>".
     "<td>".$row["status"]."</td>".
     "<td>".$row["pay"]."</td>".
-    "<td>".$row["total"]."</td>".
+    "<td>".number_format($row["total"])."đ</td>".
     '<td><button type="button" onclick="bill_detail('.$row["bill_id"].')" data-toggle="modal" data-target="#modal_bill_detail">Chi tiết</button>'.
     '<button id="btn_change" type="button" onclick="bill_change('.$row["bill_id"].')" data-toggle="modal" data-target="#modal_bill_change">Sửa</button></td></tr>';
 }

@@ -3,7 +3,7 @@ require "$path/common/functions.php";
 session_start();
 $username = $_SESSION['username'];
 $usertype=isset($_SESSION["userType"])?$_SESSION["userType"]:"";
-$link="http://" . $_SERVER['SERVER_NAME']."/git/do-an-web";
+$link="http://" . $_SERVER['SERVER_NAME']."/do-an-web";
 if ($usertype!=1) {
 
    header("Location:$link/404.php");

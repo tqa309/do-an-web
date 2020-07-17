@@ -89,18 +89,18 @@ include "$path/common/header.php" ?>
           <div class="modal-body">
           <form  id="form_change" class="needs-validation" method="POST">
           <div><strong>Tình trạng vận chuyển</strong></div>
-          <input type="radio" id="status_0" name="status" value="chưa chuyển">
-          <label for="chưa chuyển">chưa chuyển</label><br>
-          <input type="radio" id="status_1" name="status" value="đang chuyển">
-          <label for="đang chuyển">đang chuyển</label><br>
-          <input type="radio" id="status_2" name="status" value="đã nhận">
-          <label for="đã nhận">đã nhận</label>
+          <input type="radio" id="status_0" name="status" value="Chưa chuyển">
+          <label>Chưa chuyển</label><br>
+          <input type="radio" id="status_1" name="status" value="Đang chuyển">
+          <label>Đang chuyển</label><br>
+          <input type="radio" id="status_2" name="status" value="Đã nhận">
+          <label>Đã nhận</label>
           <br>
           <div><strong>Tình trạng thanh toán</strong></div>
-          <input type="radio" id="pay_0" name="pay" value="chưa">
-          <label for="chưa">chưa</label><br>
-          <input type="radio" id="pay_1" name="pay" value="rồi">
-          <label for="rồi">rồi</label><br>
+          <input type="radio" id="pay_0" name="pay" value="Chưa thanh toán">
+          <label>Chưa thanh toán</label><br>
+          <input type="radio" id="pay_1" name="pay" value="Đã thanh toán">
+          <label>Đã thanh toán</label><br>
           <div></div>
           
           <button id="submitformdata" onclick="SubmitFormData()" type="button" class="btn btn-primary">Cập nhật</button>
